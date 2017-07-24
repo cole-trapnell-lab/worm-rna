@@ -103,15 +103,49 @@ It aims to cover the following use cases:</p>
 {% endhighlight %}
 
 3 x 3 sparse Matrix of class "dgCMatrix" <br>
-          &#9     cele-001-001.CATGACTCAA &#9 cele-001-001.AAGACGGCCA <br>
-WBGene00000001    &#9                   .      &#9                 . <br>
-WBGene00000002          &#9             .            &#9           . <br>
-WBGene00000003             &#9          .          &#9             . <br>
-      &#9         cele-001-001.GCCAACGCCA <br>
-WBGene00000001    &#9                   . <br>
-WBGene00000002       &#9                . <br>
-WBGene00000003          &#9             . <br>
-fix later
+
+<table>
+    <tr>
+      <th> </th>
+      <th> cele-001-001.CATGACTCAA </th>
+      <th> cele-001-001.AAGACGGCCA </th>
+    </tr>
+    <tr>
+      <th> WBGene00000001 </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+    </tr>
+    <tr>
+      <th> WBGene00000002 </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+    </tr>
+    <tr>
+      <th> WBGene00000003 </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+    </tr>
+    <tr>
+      <th> </th>
+      <th> cele-001-001.GCCAACGCCA </th>
+      <th> </th>
+  </tr>
+  <tr>
+    <th> WBGene00000001 </th>
+    <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+    <th> </th>
+  </tr>
+  <tr>
+    <th> WBGene00000002 </th>
+    <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+    <th> </th>
+  </tr>
+  <tr>
+      <th> WBGene00000003 </th>
+      <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </th>
+      <th> </th>
+    </tr>
+  </table>
 
 {% highlight R %}
 fData(cds)[1:3,]
@@ -374,7 +408,7 @@ pData(cds)[1:3,]
 
 <br>
 
-<h2>Use Case 2: Exploring the Expresion Pattern of a Gene of Interest</h2>
+<h2>Use Case 2: Expression Pattern of a Gene of Interest</h2>
 
 <p>The <code>show.expr.info</code> function returns statistics related to the expression of a given gene in tabular form.
   The first argument is the gene name.
@@ -684,7 +718,7 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_1.png" width= 600>
+  <img src= "{{site.url}}/images/Cao_2017_1.png">
 </div>
 
 {% highlight R %}
@@ -692,11 +726,11 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_2.png" width= 600>
+  <img src= "{{site.url}}/images/Cao_2017_2.png">
 </div>
 
 
-<h2>Use Case 3: Testing for Differential Expression Between Subset of Cells</h2>
+<h2>Use Case 3: Differential Expression of Cells' Subset</h2>
 
 
 <p> We've defined a function <em>two.set.differential.gene.test</em> that finds and reports statistics on differentially expressed genes (DEG) that distinguish between two defined sets of cells.
@@ -1772,7 +1806,7 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
 </table>
 
 
-<h2>Use Case 4: Re-Clustering Subsets of the data using t-SNE</h2>
+<h2>Use Case 4: Re-Clustering Data Subsets using t-SNE</h2>
 
 <p>In the Cao et al. paper, we found that several of the neuron t-SNE clusters expressed markers of cholinergic neurons such as unc-17, cho-1, and cha-1.
 Let's perform a sub-clustering of these cholinergic neurons to see if we can get better separation.
