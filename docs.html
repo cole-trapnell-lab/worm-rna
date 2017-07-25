@@ -717,17 +717,17 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
   plot.expr(cds, "lin-12")
 {% endhighlight %}
 
-<div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_1.png">
-</div>
+
+  <img src= "{{site.url}}/images/Cao_2017_1.png" style="margin-right:30em">
+
 
 {% highlight R %}
   plot.expr(cds.neurons, "che-3")
 {% endhighlight %}
 
-<div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_2.png">
-</div>
+
+  <img src= "{{site.url}}/images/Cao_2017_2.png" >
+
 
 
 <h2>Use Case 3: Differential Expression of Cells' Subset</h2>
@@ -1234,10 +1234,13 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
 
 
 {% highlight R %}
-BWM.anterior.vs.posterior.DEG = two.set.differential.gene.test(
-  cds,
-  is.cell.type(cds, "Body wall muscle") & expresses.gene(cds, "tni-3"),
-  is.cell.type(cds, "Body wall muscle") & (expresses.gene(cds, "cwn-1") |
+BWM.anterior.vs.posterior.DEG =
+  two.set.differential.gene.test(
+    cds,
+    is.cell.type(cds, "Body wall muscle") &
+      expresses.gene(cds, "tni-3"),
+    is.cell.type(cds, "Body wall muscle") &
+      (expresses.gene(cds, "cwn-1") |
   expresses.gene(cds, "egl-20")))
 {% endhighlight %}
 <br>
