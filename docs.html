@@ -88,6 +88,7 @@ It aims to cover the following use cases:</p>
     <li> cds.experiment.2 has data from the second C. elegans experiment described in Cao et al..
       This includes intestine cells that were missed in the first experiment, but the data overall is lower quality than the first experiment.
       In the manuscript, we only included the intestine cells from this experiment and excluded the rest. </li>
+    </ul>
 
 <h2>Use Case 1: Accessing the Raw Data</h2>
 
@@ -694,13 +695,14 @@ show.expr.info
           else if (expr.info == "neuron type")
               expr.info = neuron.type.expr.info
       }
-      gene.id = get.gene.id(gene, fData.df = expr.info$gene.annotations)
+      gene.id =
+        get.gene.id(gene, fData.df = expr.info$gene.annotations)
       data.frame(facet = names(expr.info$tpm[gene.id, ]),
       tpm = expr.info$tpm[gene.id,],
       prop.cells.expr = expr.info$prop.cells.expr[gene.id,],
       n.umi = expr.info$n.umi[gene.id, ],
-      total.n.umi.for.facet = expr.info$total.n.umi.for.facet) %>%
-          arrange(-tpm)
+      total.n.umi.for.facet = expr.info$total.n.umi.for.facet)
+        %>% arrange(-tpm)
   }
 {% endhighlight %}
 
@@ -716,18 +718,17 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 {% highlight R %}
   plot.expr(cds, "lin-12")
 {% endhighlight %}
-
-
-  <img src= "{{site.url}}/images/Cao_2017_1.png" style="margin-right:30em">
-
+<div class= "text-center" style="overflow:auto;">
+  <img src= "{{site.url}}/images/Cao_2017_1.png">
+</div>
 
 {% highlight R %}
   plot.expr(cds.neurons, "che-3")
 {% endhighlight %}
 
-
+<div class= "text-center">
   <img src= "{{site.url}}/images/Cao_2017_2.png" >
-
+</div>
 
 
 <h2>Use Case 3: Differential Expression of Cells' Subset</h2>
@@ -802,7 +803,8 @@ sum(is.neuron.type(cds.neurons, "ASEL"))
 
 {% highlight R %}
 ASEL.vs.ASER.DEG = two.set.differential.gene.test(
-  cds.neurons, is.neuron.type(cds.neurons, "ASEL"), is.neuron.type(cds.neurons, "ASER"))
+  cds.neurons, is.neuron.type(cds.neurons, "ASEL"),
+    is.neuron.type(cds.neurons, "ASER"))
 {% endhighlight %}
 
 <em>two.set.differential.gene.test</em> returns the following statistics:
@@ -826,95 +828,102 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
   <thead>
   <tr>
     <th>gene</th>
-    <th>set.1.n.umi</th>
-    <th>set.2.n.umi</th>
-    <th>set.1.tpm</th>
-    <th>set.2.tpm</th>
-    <th>higher.expr</th>
-    <th>log2.ratio</th>
-    <th>precision</th>
-    <th>recall</th>
-    <th>f.score</th>
+    <th>tank-1</th>
+    <th>gcy-22</th>
+    <th>gei-3</th>
+    <th>gcy-3</th>
+    <th>gcy-6</th>
+    <th>T27C4.1</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <th>tank-1</th>
+    <th>set.1.n.umi</th>
     <th>20</th>
+    <th>0</th>
+    <th>10</th>
+    <th>0</th>
+    <th>66</th>
+    <th>30</th>
+  </tr>
+  <tr>
+    <th>set.1.n.umi</th>
     <th>570</th>
+    <th>129</th>
+    <th>166</th>
+    <th>147</th>
+    <th>0</th>
+    <th>164</th>
+  </tr>
+  <tr>
+    <th>set.1.tpm</th>
     <th>1794.188</th>
+    <th>0.000</th>
+    <th>1095.928</th>
+    <th>0.000</th>
+    <th>6909.705</th>
+    <th>3210.293</th>
+  </tr>
+  <tr>
+    <th>set.2.tpm</th>
     <th>36169.778</th>
+    <th>8862.360</th>
+    <th>12076.301</th>
+    <th>9593.506</th>
+    <th>0.000</th>
+    <th>11338.218</th>
+  </tr>
+  <tr>
+    <th>higher.expr</th>
     <th>Set 2</th>
+    <th>Set 2</th>
+    <th>Set 2</th>
+    <th>Set 2</th>
+    <th>Set 1</th>
+    <th>Set 2</th>
+  </tr>
+  <tr>
+    <th>log2.ratio</th>
     <th>4.332578</th>
+    <th>13.113475</th>
+    <th>3.460638</th>
+    <th>13.227842</th>
+    <th>12.754408</th>
+    <th>1.819968</th>
+  </tr>
+  <tr>
+    <th>precision</th>
     <th>0.8536585</th>
     <th>1.0000000</th>
-    <th>0.9210526</th>
+    <th>0.9090909</th>
+    <th>1.0000000</th>
+    <th>1.0000000</th>
+    <th>0.6808511</th>
   </tr>
   <tr>
-    <th>gcy-22</th>
-    <th>0</th>
-    <th>129</th>
-    <th>0.000</th>
-    <th>8862.360</th>
-    <th>Set 2</th>
-    <th>13.113475</th>
+    <th>recall</th>
     <th>1.0000000</th>
     <th>0.8000000</th>
-    <th>0.8888889</th>
-  </tr>
-  <tr>
-    <th>gei-3</th>
-    <th>10</th>
-    <th>166</th>
-    <th>1095.928</th>
-    <th>12076.301</th>
-    <th>Set 2</th>
-    <th>3.460638</th>
-    <th>0.9090909</th>
     <th>0.8571429</th>
-    <th>0.8823529</th>
-  </tr>
-  <tr>
-    <th>gcy-3</th>
-    <th>0</th>
-    <th>147</th>
-    <th>0.000</th>
-    <th>9593.506</th>
-    <th>Set 2</th>
-    <th>13.227842</th>
-    <th>1.0000000</th>
     <th>0.7428571</th>
-    <th>0.8524590</th>
-  </tr>
-  <tr>
-    <th>gcy-6</th>
-    <th>66</th>
-    <th>0</th>
-    <th>6909.705</th>
-    <th>0.000</th>
-    <th>Set 1</th>
-    <th>12.754408</th>
-    <th>1.0000000</th>
-    <th>0.7297297</th>
-    <th>0.8437500</th>
-  </tr>
-  <tr>
-    <th>T27C4.1</th>
-    <th>30</th>
-    <th>164</th>
-    <th>3210.293</th>
-    <th>11338.218</th>
-    <th>Set 2</th>
-    <th>1.819968</th>
-    <th>0.6808511</th>
+    <th>0.7297297	</th>
     <th>0.9142857</th>
+  </tr>
+  <tr>
+    <th>f.score</th>
+    <th>0.9210526</th>
+    <th>0.8888889</th>
+    <th>0.8823529</th>
+    <th>0.8524590</th>
+    <th>0.8437500</th>
     <th>0.7804878</th>
   </tr>
 </tbody>
 </table>
 
 {% highlight R %}
-ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1") %>% head()
+ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
+  %>% head()
 {% endhighlight %}
 
 
@@ -922,88 +931,94 @@ ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1") %>% head()
   <thead>
   <tr>
     <th>gene</th>
-    <th>set.1.n.umi</th>
-    <th>set.2.n.umi</th>
-    <th>set.1.tpm</th>
-    <th>set.2.tpm</th>
-    <th>higher.expr</th>
-    <th>log2.ratio</th>
-    <th>precision</th>
-    <th>recall</th>
-    <th>f.score</th>
+    <th>gcy-6</th>
+    <th>gcy-17</th>
+    <th>crh-1</th>
+    <th>gcy-20</th>
+    <th>gcy-7</th>
+    <th>unc-44</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <th>gcy-6</th>
+    <th>set.1.n.umi</th>
     <th>66</th>
-    <th>0</th>
-    <th>6909.705</th>
-    <th>0.000</th>
-    <th>Set 1</th>
-    <th>12.754408</th>
-    <th>1.0000000</th>
-    <th>0.7297297</th>
-    <th>0.8437500</th>
-  </tr>
-  <tr>
-    <th>gcy-17</th>
     <th>69</th>
-    <th>0</th>
-    <th>6553.874</th>
-    <th>0.000</th>
-    <th>Set 1</th>
-    <th>12.678132</th>
-    <th>1.0000000</th>
-    <th>0.6216216</th>
-    <th>0.7666667</th>
-  </tr>
-  <tr>
-    <th>crh-1</th>
     <th>58</th>
-    <th>12</th>
-    <th>5675.336</th>
-    <th>800.504</th>
-    <th>Set 1</th>
-    <th>2.823924</th>
-    <th>0.8333333</th>
-    <th>0.6756757</th>
-    <th>0.7462687</th>
-  </tr>
-  <tr>
-    <th>gcy-20</th>
     <th>53</th>
-    <th>0</th>
-    <th>5339.037</th>
-    <th>0.000</th>
-    <th>Set 1</th>
-    <th>12.382364</th>
-    <th>1.0000000</th>
-    <th>0.5945946</th>
-    <th>0.7457627</th>
-  </tr>
-  <tr>
-    <th>gcy-7</th>
     <th>39</th>
-    <th>0</th>
-    <th>3709.660</th>
-    <th>0.000</th>
-    <th>Set 1</th>
-    <th>11.857071</th>
-    <th>1.0000000</th>
-    <th>0.5675676</th>
-    <th>0.7241379</th>
+    <th>88</th>
   </tr>
   <tr>
-    <th>unc-44</th>
-    <th>88</th>
+    <th>set.2.n.umi</th>
+    <th>0</th>
+    <th>0</th>
+    <th>12</th>
+    <th>0</th>
+    <th>0</th>
     <th>45</th>
+  </tr>
+  <tr>
+    <th>set.1.n.tpm</th>
+    <th>6909.705</th>
+    <th>6553.874</th>
+    <th>5675.336</th>
+    <th>5339.037</th>
+    <th>3709.660</th>
     <th>7647.438</th>
+  </tr>
+  <tr>
+    <th>set.2.tpm</th>
+    <th>0.000</th>
+    <th>0.000</th>
+    <th>800.504</th>
+    <th>0.000</th>
+    <th>0.000</th>
     <th>2915.088</th>
+  </tr>
+  <tr>
+    <th>higher.expr</th>
     <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+  </tr>
+  <tr>
+    <th>log2.ratio</th>
+    <th>12.754408</th>
+    <th>12.678132</th>
+    <th>2.823924</th>
+    <th>12.382364</th>
+    <th>11.857071</th>
     <th>1.390942</th>
+  </tr>
+  <tr>
+    <th>precision</th>
+    <th>1.0000000</th>
+    <th>1.0000000</th>
+    <th>0.8333333</th>
+    <th>1.0000000</th>
+    <th>1.0000000</th>
     <th>0.6000000</th>
+  </tr>
+  <tr>
+    <th>recall</th>
+    <th>0.7297297</th>
+    <th>0.6216216</th>
+    <th>0.6756757</th>
+    <th>0.5945946</th>
+    <th>0.5675676</th>
     <th>0.8108108</th>
+  </tr>
+  <tr>
+    <th>f.score</th>
+    <th>0.8437500</th>
+    <th>0.7666667</th>
+    <th>0.7462687</th>
+    <th>0.7457627</th>
+    <th>0.7241379</th>
     <th>0.6896552</th>
   </tr>
 </tbody>
@@ -1044,88 +1059,94 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
   <thead>
   <tr>
     <th>gene</th>
-    <th>set.1.n.umi</th>
-    <th>set.2.n.umi</th>
-    <th>set.1.tpm</th>
-    <th>set.2.tpm</th>
-    <th>higher.expr</th>
-    <th>log2.ratio</th>
-    <th>precision</th>
-    <th>recall</th>
-    <th>f.score</th>
+    <th>tank-1</th>
+    <th>gcy-22</th>
+    <th>gei-3</th>
+    <th>gcy-3</th>
+    <th>gcy-6</th>
+    <th>T27C4.1</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <th>tank-1</th>
+    <th>set.1.n.umi</th>
     <th>20</th>
+    <th>0</th>
+    <th>10</th>
+    <th>0</th>
+    <th>66</th>
+    <th>30</th>
+  </tr>
+  <tr>
+    <th>set.2.n.umi</th>
     <th>570</th>
+    <th>129</th>
+    <th>166</th>
+    <th>147</th>
+    <th>0</th>
+    <th>164</th>
+  </tr>
+  <tr>
+    <th>set.1.tpm</th>
     <th>1794.188</th>
+    <th>0.000</th>
+    <th>1095.928</th>
+    <th>0.000</th>
+    <th>6909.705</th>
+    <th>3210.293</th>
+  </tr>
+  <tr>
+    <th>set.2.tpm</th>
     <th>36169.778</th>
+    <th>8862.360</th>
+    <th>12076.301</th>
+    <th>9593.506</th>
+    <th>0.000</th>
+    <th>11338.218</th>
+  </tr>
+  <tr>
+    <th>higher.expr</th>
     <th>Set 2</th>
+    <th>Set 2</th>
+    <th>Set 2</th>
+    <th>Set 2</th>
+    <th>Set 1</th>
+    <th>Set 2</th>
+  </tr>
+  <tr>
+    <th>log2.ratio</th>
     <th>4.332578</th>
+    <th>13.113475</th>
+    <th>3.460638</th>
+    <th>13.227842</th>
+    <th>12.754408</th>
+    <th>1.819968</th>
+  </tr>
+  <tr>
+    <th>precision</th>
     <th>0.8536585</th>
     <th>1.0000000</th>
-    <th>0.9210526</th>
+    <th>0.9090909</th>
+    <th>1.0000000</th>
+    <th>1.0000000</th>
+    <th>0.6808511</th>
   </tr>
   <tr>
-    <th>gcy-22</th>
-    <th>0</th>
-    <th>129</th>
-    <th>0.000</th>
-    <th>8862.360</th>
-    <th>Set 2</th>
-    <th>13.113475</th>
+    <th>recall</th>
     <th>1.0000000</th>
     <th>0.8000000</th>
-    <th>0.8888889</th>
-  </tr>
-  <tr>
-    <th>gei-3</th>
-    <th>10</th>
-    <th>166</th>
-    <th>1095.928</th>
-    <th>12076.301</th>
-    <th>Set 2</th>
-    <th>3.460638</th>
-    <th>0.9090909</th>
     <th>0.8571429</th>
-    <th>0.8823529</th>
-  </tr>
-  <tr>
-    <th>gcy-3</th>
-    <th>0</th>
-    <th>147</th>
-    <th>0.000</th>
-    <th>9593.506</th>
-    <th>Set 2</th>
-    <th>13.227842</th>
-    <th>1.0000000</th>
     <th>0.7428571</th>
-    <th>0.8524590</th>
-  </tr>
-  <tr>
-    <th>gcy-6</th>
-    <th>66</th>
-    <th>0</th>
-    <th>6909.705</th>
-    <th>0.000</th>
-    <th>Set 1</th>
-    <th>12.754408</th>
-    <th>1.0000000</th>
     <th>0.7297297</th>
-    <th>0.8437500</th>
+    <th>0.9142857</th>
   </tr>
   <tr>
-    <th>T27C4.1</th>
-    <th>30</th>
-    <th>164</th>
-    <th>3210.293</th>
-    <th>11338.218</th>
-    <th>Set 2</th>
-    <th>1.819968</th>
-    <th>0.6808511</th>
-    <th>0.9142857</th>
+    <th>f.score</th>
+    <th>0.9210526</th>
+    <th>0.8888889</th>
+    <th>0.8823529</th>
+    <th>0.8524590</th>
+    <th>0.8437500</th>
     <th>0.7804878</th>
   </tr>
 </tbody>
@@ -1139,88 +1160,94 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
   <thead>
   <tr>
     <th>gene</th>
-    <th>set.1.n.umi</th>
-    <th>set.2.n.umi</th>
-    <th>set.1.tpm</th>
-    <th>set.2.tpm</th>
-    <th>higher.expr</th>
-    <th>log2.ratio</th>
-    <th>precision</th>
-    <th>recall</th>
-    <th>f.score</th>
+    <th>mec-17</th>
+    <th>mec-18</th>
+    <th>mtd-1</th>
+    <th>mec-7</th>
+    <th>mec-1</th>
+    <th>mec-9</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <th>mec-17</th>
+    <th>set.1.n.umi</th>
     <th>2720</th>
-    <th>118</th>
-    <th>24033.028</th>
-    <th>39.202902</th>
-    <th>Set 1</th>
-    <th>9.223503</th>
-    <th>0.9009288</th>
-    <th>0.8712575</th>
-    <th>0.8858447</th>
-  </tr>
-  <tr>
-    <th>mec-18</th>
     <th>796</th>
-    <th>49</th>
-    <th>7040.671</th>
-    <th>17.963804</th>
-    <th>Set 1</th>
-    <th>8.536321</th>
-    <th>0.9094828</th>
-    <th>0.6317365</th>
-    <th>0.7455830</th>
-  </tr>
-  <tr>
-    <th>mtd-1</th>
     <th>443</th>
-    <th>15</th>
-    <th>4025.528</th>
-    <th>5.513083</th>
-    <th>Set 1</th>
-    <th>9.271622</th>
-    <th>0.9476440</th>
-    <th>0.5419162</th>
-    <th>0.6895238</th>
-  </tr>
-  <tr>
-    <th>mec-7</th>
     <th>4418</th>
-    <th>743</th>
-    <th>35936.308</th>
-    <th>239.162028</th>
-    <th>Set 1</th>
-    <th>7.225290</th>
-    <th>0.5563771</th>
-    <th>0.9011976</th>
-    <th>0.6880000</th>
-  </tr>
-  <tr>
-    <th>mec-1</th>
     <th>1717</th>
-    <th>695</th>
-    <th>16304.188</th>
-    <th>328.822706</th>
-    <th>Set 1</th>
-    <th>5.627408</th>
-    <th>0.4609610</th>
-    <th>0.9191617</th>
-    <th>0.6140000</th>
+    <th>726</th>
   </tr>
   <tr>
-    <th>mec-9</th>
-    <th>726</th>
+    <th>set.2.n.umi</th>
+    <th>118</th>
+    <th>49</th>
+    <th>15</th>
+    <th>743</th>
+    <th>695</th>
     <th>337</th>
+  </tr>
+  <tr>
+    <th>set.1.tpm</th>
+    <th>24033.028</th>
+    <th>7040.671</th>
+    <th>4025.528</th>
+    <th>35936.308</th>
+    <th>16304.188</th>
     <th>7088.606</th>
+  </tr>
+  <tr>
+    <th>set.2.tpm</th>
+    <th>39.202902</th>
+    <th>17.963804</th>
+    <th>5.513083</th>
+    <th>239.162028</th>
+    <th>328.822706</th>
     <th>182.571539</th>
+  </tr>
+  <tr>
+    <th>higher.expr</th>
     <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+    <th>Set 1</th>
+  </tr>
+  <tr>
+    <th>log2.ratio</th>
+    <th>9.223503</th>
+    <th>8.536321</th>
+    <th>9.271622</th>
+    <th>7.225290</th>
+    <th>5.627408</th>
     <th>5.271088</th>
+  </tr>
+  <tr>
+    <th>precision</th>
+    <th>0.9009288</th>
+    <th>0.9094828</th>
+    <th>0.9476440</th>
+    <th>0.5563771</th>
+    <th>0.4609610</th>
     <th>0.5126263</th>
+  </tr>
+  <tr>
+    <th>recall</th>
+    <th>0.8712575</th>
+    <th>0.6317365</th>
+    <th>0.5419162</th>
+    <th>0.9011976</th>
+    <th>0.9191617</th>
     <th>0.6077844</th>
+  </tr>
+  <tr>
+    <th>f.score</th>
+    <th>0.8858447</th>
+    <th>0.7455830</th>
+    <th>0.6895238</th>
+    <th>0.6880000</th>
+    <th>0.6140000</th>
     <th>0.5561644</th>
   </tr>
 </tbody>
@@ -1492,11 +1519,12 @@ plot.expr(cds.neurons, "R102.2")
 <em> two.set.differential.gene.test </em> can be used to find DEG between the mystery R102.2(+) clusters and other ciliated sensory neurons. If you can figure out what these clusters correspond to, let us know!
 
 {% highlight R %}
-neuron.cluster.21.vs.other.CSN.DEG = two.set.differential.gene.test(
-  cds.neurons,
-  is.neuron.type(cds.neurons, "Cluster 21"),
-  !is.neuron.type(cds.neurons, "Cluster 21") &
-  is.cell.type(cds.neurons, "Ciliated sensory neurons"))
+neuron.cluster.21.vs.other.CSN.DEG =
+  two.set.differential.gene.test(
+    cds.neurons,
+    is.neuron.type(cds.neurons, "Cluster 21"),
+    !is.neuron.type(cds.neurons, "Cluster 21") &
+    is.cell.type(cds.neurons, "Ciliated sensory neurons"))
 
 neuron.cluster.21.vs.other.CSN.DEG$higher.expr = ifelse(
   neuron.cluster.21.vs.other.CSN.DEG$higher.expr == "Set 1",
@@ -1506,7 +1534,8 @@ neuron.cluster.21.vs.other.CSN.DEG$higher.expr = ifelse(
 <br>
 
  {% highlight R %}
-  neuron.cluster.21.vs.other.CSN.DEG %>% filter(higher.expr == "Cluster 21",
+  neuron.cluster.21.vs.other.CSN.DEG %>%
+    filter(higher.expr == "Cluster 21",
   precision >= 0.8) %>% head(10)
  {% endhighlight %}
 
@@ -1650,11 +1679,13 @@ neuron.cluster.21.vs.other.CSN.DEG$higher.expr = ifelse(
  </table>
 
 {% highlight R %}
-neuron.cluster.16.vs.other.CSN.DEG = two.set.differential.gene.test(
-  cds.neurons,
-  is.neuron.type(cds.neurons, "Cluster 16"),
-  !is.neuron.type(cds.neurons, "Cluster 16") & is.cell.type(cds.neurons,
-    "Ciliated sensory neurons"))
+neuron.cluster.16.vs.other.CSN.DEG =
+  two.set.differential.gene.test(
+    cds.neurons,
+    is.neuron.type(cds.neurons, "Cluster 16"),
+    !is.neuron.type(cds.neurons, "Cluster 16") &
+        is.cell.type(cds.neurons,
+      "Ciliated sensory neurons"))
 
 neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
   neuron.cluster.16.vs.other.CSN.DEG$higher.expr == "Set 1",
@@ -1665,7 +1696,8 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
 
 {% highlight R %}
 
-  neuron.cluster.16.vs.other.CSN.DEG %>% filter(higher.expr == "Cluster 16") %>% head(10)
+  neuron.cluster.16.vs.other.CSN.DEG %>%
+      filter(higher.expr == "Cluster 16") %>% head(10)
 
 {% endhighlight %}
 
@@ -1829,10 +1861,12 @@ pData(cds.neurons)$any.cholinergic.marker =
 pData(cds.neurons) %>%
     group_by(Cluster) %>%
     summarize(
-        n.total = n(), n.cholinergic = sum(any.cholinergic.marker),
+        n.total = n(), n.cholinergic =
+          sum(any.cholinergic.marker),
         prop.cholinergic = n.cholinergic / n.total) %>%
     inner_join(
-        unique(pData(cds.neurons)[, c("Cluster", "neuron.type")]),
+        unique(pData(cds.neurons)[, c("Cluster",
+            "neuron.type")]),
         by = "Cluster") %>%
     arrange(-prop.cholinergic) %>%
     head(15)
@@ -1962,8 +1996,9 @@ pData(cds.neurons) %>%
 
 {%highlight R%}
 cholinergic.clusters = c(29, 23, 3, 26, 35, 36, 15, 24, 11)
-plot_cell_clusters(cds.neurons, color = "Cluster %in% cholinergic.clusters",
-cell_size = 0.2)
+plot_cell_clusters(cds.neurons, color =
+  "Cluster %in% cholinergic.clusters",
+  cell_size = 0.2)
 {% endhighlight %}
 
 <div class= "text-center">
@@ -1972,11 +2007,13 @@ cell_size = 0.2)
 
 {% highlight R %}
 cds.cholinergic =
-    cds.neurons[, pData(cds.neurons)$Cluster %in% cholinergic.clusters]
+    cds.neurons[, pData(cds.neurons)$Cluster %in%
+        cholinergic.clusters]
 cat(ncol(cds.cholinergic), "cells in the cds subset", "\n")
 
 cds.cholinergic = estimateSizeFactors(cds.cholinergic)
-cds.cholinergic = estimateDispersions(cds.cholinergic) # would take a lot of memory for larger cell sets
+cds.cholinergic = estimateDispersions(cds.cholinergic)
+    # above line would take a lot of memory for larger cell sets
 cds.cholinergic = detectGenes(cds.cholinergic, 0.1)
 {% endhighlight %}
 
@@ -1986,7 +2023,7 @@ cds.cholinergic = detectGenes(cds.cholinergic, 0.1)
 
 <p>
   {% highlight R %}
-  system.time({
+system.time({
 cds.cholinergic = reduceDimension(
     cds.cholinergic, max_components = 2, norm_method = "log",
     num_dim = 20, reduction_method = 'tSNE', verbose = T)
@@ -2044,7 +2081,9 @@ In my experience, it's usually better to over-cluster than to under-cluster. </p
 <p> Distance cutoff calculated to 2.694535 </p>
 
 {% highlight R %}
-  plot_rho_delta(cds.cholinergic, rho_threshold = 10, delta_threshold = 6)
+  plot_rho_delta(cds.cholinergic,
+    rho_threshold = 10,
+    delta_threshold = 6)
 {% endhighlight %}
 
 <div class= "text-center">
@@ -2082,8 +2121,9 @@ plot_cell_clusters(cds.cholinergic, cell_size = 0.2)
 <p> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 </p>
 
 {% highlight R %}
-DEG.results = lapply(cholinergic.clusters, function(this.cluster) {
-    message("Finding markers for cluster ", this.cluster)
+DEG.results = lapply(cholinergic.clusters,
+    function(this.cluster) {
+  message("Finding markers for cluster ", this.cluster)
     cbind(
         two.set.differential.gene.test(
             cds.cholinergic,
@@ -2095,19 +2135,21 @@ DEG.results = lapply(cholinergic.clusters, function(this.cluster) {
 
 {% highlight R %}
 cholinergic.cluster.markers =
-do.call(rbind, DEG.results) %>% filter(higher.expr == "Set 1") %>%
-    select(
-        cluster, gene,
-        cluster.n.umi = set.1.n.umi,
-        other.n.umi = set.2.n.umi,
-        cluster.tpm = set.1.tpm,
-        other.tpm = set.2.tpm,
-        log2.ratio, precision, recall, f.score) %>%
-    arrange(-f.score)
+    do.call(rbind, DEG.results) %>%
+        filter(higher.expr == "Set 1") %>%
+  select(
+      cluster, gene,
+      cluster.n.umi = set.1.n.umi,
+      other.n.umi = set.2.n.umi,
+      cluster.tpm = set.1.tpm,
+      other.tpm = set.2.tpm,
+      log2.ratio, precision, recall, f.score) %>%
+  arrange(-f.score)
 {% endhighlight %}
 
 {% highlight R %}
-  cholinergic.cluster.markers %>% filter(precision >= 0.5) %>% head(10)
+  cholinergic.cluster.markers %>%
+      filter(precision >= 0.5) %>% head(10)
 {% endhighlight %}
 
 
@@ -2267,11 +2309,13 @@ do.call(rbind, DEG.results) %>% filter(higher.expr == "Set 1") %>%
   The following code will set up <em>plot.expr</em> so it can show which density peak clusters from this re-clustering analysis express a given gene.</p>
 
   {% highlight R %}
-    cholinergic.expr.info = get.expr.info.by.facet(cds.cholinergic, "Cluster")
+cholinergic.expr.info = get.expr.info.by.facet(cds.cholinergic,
+  "Cluster")
   {% endhighlight %}
 
   {% highlight R %}
-    plot.expr(cds.cholinergic, "lgc-39", expr.info = cholinergic.expr.info)
+plot.expr(cds.cholinergic, "lgc-39", expr.info =
+  cholinergic.expr.info)
   {% endhighlight %}
 
   <div class= "text-center">
@@ -2279,7 +2323,8 @@ do.call(rbind, DEG.results) %>% filter(higher.expr == "Set 1") %>%
   </div>
 
   {% highlight R %}
-    plot.expr(cds.cholinergic, "vglu-2", expr.info = cholinergic.expr.info)
+    plot.expr(cds.cholinergic, "vglu-2", expr.info =
+      cholinergic.expr.info)
   {% endhighlight %}
 
   <div class= "text-center">
@@ -2287,7 +2332,8 @@ do.call(rbind, DEG.results) %>% filter(higher.expr == "Set 1") %>%
   </div>
 
   {% highlight R %}
-    plot.expr(cds.cholinergic, "unc-17", expr.info = cholinergic.expr.info)
+    plot.expr(cds.cholinergic, "unc-17", expr.info =
+      cholinergic.expr.info)
   {% endhighlight %}
 
   <div class= "text-center">
