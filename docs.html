@@ -105,7 +105,7 @@ It aims to cover the following use cases:</p>
 
 3 x 3 sparse Matrix of class "dgCMatrix" <br>
 
-<table>
+<table style="overflow:auto;">
     <tr>
       <th> </th>
       <th> cele-001-001.CATGACTCAA </th>
@@ -152,7 +152,7 @@ It aims to cover the following use cases:</p>
 fData(cds)[1:3,]
 {% endhighlight %}
 
-<table>
+<table style="overflow:auto;">
   <tr>
     <th></th>
     <th>gene_id</th>
@@ -201,7 +201,7 @@ pData(cds)[1:3,]
   }
 </style>
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th></th>
@@ -304,7 +304,7 @@ pData(cds)[1:3,]
 
 <br>
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th></th>
@@ -436,7 +436,7 @@ pData(cds)[1:3,]
   show.expr.info("emb-9", "tissue")
   {%endhighlight%}
 
-  <table class = "table">
+  <table class = "table" style="overflow:auto;">
     <thead>
     <tr>
       <th>facet</th>
@@ -503,7 +503,7 @@ pData(cds)[1:3,]
     show.expr.info("emb-9", "cell type") %>% head(10)
   {% endhighlight %}
 
-  <table class = "table">
+  <table class = "table" style="overflow:auto;">
     <thead>
     <tr>
       <th>facet</th>
@@ -592,7 +592,7 @@ show.expr.info("R102.2", "neuron type") %>% head(10)
 {%endhighlight%}
 
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>facet</th>
@@ -718,8 +718,8 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 {% highlight R %}
   plot.expr(cds, "lin-12")
 {% endhighlight %}
-<div class= "text-center" style="overflow:auto;">
-  <img src= "{{site.url}}/images/Cao_2017_1.png">
+<div class= "text-center">
+  <img src= "{{site.url}}/images/Cao_2017_1.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -727,7 +727,7 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_2.png" >
+  <img src= "{{site.url}}/images/Cao_2017_2.png" width = 600>
 </div>
 
 
@@ -824,7 +824,7 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
   ASEL.vs.ASER.DEG %>% head()
 {%endhighlight%}
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>gene</th>
@@ -927,7 +927,7 @@ ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
 {% endhighlight %}
 
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>gene</th>
@@ -1037,7 +1037,7 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
 
 {% endhighlight %}
 
-<table>
+<table style="overflow:auto;">
   <tr>
     <th>user</th>
     <th>system</th>
@@ -1055,7 +1055,7 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
   ASEL.vs.ASER.DEG %>% head()
 {%endhighlight%}
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>gene</th>
@@ -1156,7 +1156,7 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
  touch.receptor.neurons.DEG  %>% filter(higher.expr == "Set 1") %>% head()
 {% endhighlight %}
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>gene</th>
@@ -1279,7 +1279,7 @@ BWM.anterior.vs.posterior.DEG$higher.expr = ifelse(
 {% endhighlight %}
 
 <br>
-
+<div style = "overflow: scroll;">
 <table class = "table">
   <thead>
   <tr>
@@ -1430,6 +1430,7 @@ BWM.anterior.vs.posterior.DEG$higher.expr = ifelse(
   </tr>
 </tbody>
 </table>
+</div>
 
 <em>R102.2</em> is expressed in  <a href = "http://www.wormbase.org/species/c_elegans/gene/WBGene00011289"> nine specific pairs of ciliated sensory neurons </a>.
 We have identified some of these in this dataset, but others remain ambiguous.
@@ -1438,7 +1439,7 @@ We have identified some of these in this dataset, but others remain ambiguous.
   show.expr.info("R102.2", "neuron type") %>% head(8)
 {% endhighlight %}
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>facet</th>
@@ -1513,7 +1514,7 @@ plot.expr(cds.neurons, "R102.2")
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_3.png">
+  <img src= "{{site.url}}/images/Cao_2017_3.png" width = 600>
 </div>
 
 <em> two.set.differential.gene.test </em> can be used to find DEG between the mystery R102.2(+) clusters and other ciliated sensory neurons. If you can figure out what these clusters correspond to, let us know!
@@ -1539,6 +1540,7 @@ neuron.cluster.21.vs.other.CSN.DEG$higher.expr = ifelse(
   precision >= 0.8) %>% head(10)
  {% endhighlight %}
 
+<div style = "overflow:scroll">
  <table class = "table">
    <thead>
    <tr>
@@ -1677,6 +1679,7 @@ neuron.cluster.21.vs.other.CSN.DEG$higher.expr = ifelse(
    </tr>
  </tbody>
  </table>
+ </div>
 
 {% highlight R %}
 neuron.cluster.16.vs.other.CSN.DEG =
@@ -1700,8 +1703,8 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
       filter(higher.expr == "Cluster 16") %>% head(10)
 
 {% endhighlight %}
-
-<table class = "table">
+<div style = "overflow:scroll">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>gene</th>
@@ -1839,6 +1842,7 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
   </tr>
 </tbody>
 </table>
+</div>
 
 
 <h2>Use Case 4: Re-Clustering Data Subsets using t-SNE</h2>
@@ -1874,7 +1878,7 @@ pData(cds.neurons) %>%
 </p>
 
 
-<table class = "table">
+<table class = "table" style="overflow:auto;">
   <thead>
   <tr>
     <th>Cluster</th>
@@ -2002,7 +2006,7 @@ plot_cell_clusters(cds.neurons, color =
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_4.png">
+  <img src= "{{site.url}}/images/Cao_2017_4.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -2034,7 +2038,7 @@ pData(cds.cholinergic)$tsne_2 = reducedDimA(cds.cholinergic)[2,]
   {% endhighlight %}
 </p>
 
-<table>
+<table style="overflow:auto;">
   <tr>
     <th> user </th>
     <th> system </th>
@@ -2055,7 +2059,7 @@ pData(cds.cholinergic)$tsne_2 = reducedDimA(cds.cholinergic)[2,]
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_5.png">
+  <img src= "{{site.url}}/images/Cao_2017_5.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -2065,7 +2069,7 @@ ggplot(pData(cds.cholinergic), aes(x = tsne_1, y = tsne_2)) +
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_6.png">
+  <img src= "{{site.url}}/images/Cao_2017_6.png" width = 600>
 </div>
 
 <p> Now we'll cluster the cells in the t-SNE space using density peak clustering.
@@ -2087,7 +2091,7 @@ In my experience, it's usually better to over-cluster than to under-cluster. </p
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_7.png">
+  <img src= "{{site.url}}/images/Cao_2017_7.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -2097,7 +2101,7 @@ plot_cell_clusters(cds.cholinergic, cell_size = 0.2)
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_8.png">
+  <img src= "{{site.url}}/images/Cao_2017_8.png" width = 600>
 </div>
 
 <p> Looks like there are many distinct clusters.
@@ -2152,8 +2156,8 @@ cholinergic.cluster.markers =
       filter(precision >= 0.5) %>% head(10)
 {% endhighlight %}
 
-
-<table class = "table">
+<div style = "overflow:scroll">
+<table class = "table" >
   <thead>
   <tr>
     <th>Cluster</th>
@@ -2303,7 +2307,9 @@ cholinergic.cluster.markers =
   </tr>
 </tbody>
 </table>
+</div>
 <p>
+
 
 <p>In the previous examples for using <em>plot.expr</em>, the function used pre-computed expression tables for <em>cds</em> and <em>cds.neurons</em> to show which cell types / neuron types were expressing a given gene.
   The following code will set up <em>plot.expr</em> so it can show which density peak clusters from this re-clustering analysis express a given gene.</p>
@@ -2319,7 +2325,7 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   {% endhighlight %}
 
   <div class= "text-center">
-    <img src= "{{site.url}}/images/Cao_2017_9.png">
+    <img src= "{{site.url}}/images/Cao_2017_9.png" width = 600>
   </div>
 
   {% highlight R %}
@@ -2328,7 +2334,7 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   {% endhighlight %}
 
   <div class= "text-center">
-    <img src= "{{site.url}}/images/Cao_2017_10.png">
+    <img src= "{{site.url}}/images/Cao_2017_10.png" width = 600>
   </div>
 
   {% highlight R %}
@@ -2337,7 +2343,7 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   {% endhighlight %}
 
   <div class= "text-center">
-    <img src= "{{site.url}}/images/Cao_2017_11.png">
+    <img src= "{{site.url}}/images/Cao_2017_11.png" width = 600>
   </div>
 
 </div>
