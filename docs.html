@@ -719,7 +719,7 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
   plot.expr(cds, "lin-12")
 {% endhighlight %}
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_1.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_1.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -727,7 +727,7 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_2.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_2.png" width = 600>
 </div>
 
 
@@ -1514,7 +1514,7 @@ plot.expr(cds.neurons, "R102.2")
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_3.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_3.png" width = 600>
 </div>
 
 <em> two.set.differential.gene.test </em> can be used to find DEG between the mystery R102.2(+) clusters and other ciliated sensory neurons. If you can figure out what these clusters correspond to, let us know!
@@ -2006,7 +2006,7 @@ plot_cell_clusters(cds.neurons, color =
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_4.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_4.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -2059,7 +2059,7 @@ pData(cds.cholinergic)$tsne_2 = reducedDimA(cds.cholinergic)[2,]
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_5.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_5.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -2069,7 +2069,7 @@ ggplot(pData(cds.cholinergic), aes(x = tsne_1, y = tsne_2)) +
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_6.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_6.png" width = 600>
 </div>
 
 <p> Now we'll cluster the cells in the t-SNE space using density peak clustering.
@@ -2091,7 +2091,7 @@ In my experience, it's usually better to over-cluster than to under-cluster. </p
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_7.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_7.png" width = 600>
 </div>
 
 {% highlight R %}
@@ -2101,7 +2101,7 @@ plot_cell_clusters(cds.cholinergic, cell_size = 0.2)
 {% endhighlight %}
 
 <div class= "text-center">
-  <img src= "{{site.url}}/images/Cao_2017_8.png" width = 600>
+  <img src= "{{site.baseurl}}/images/Cao_2017_8.png" width = 600>
 </div>
 
 <p> Looks like there are many distinct clusters.
@@ -2325,7 +2325,7 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   {% endhighlight %}
 
   <div class= "text-center">
-    <img src= "{{site.url}}/images/Cao_2017_9.png" width = 600>
+    <img src= "{{site.baseurl}}/images/Cao_2017_9.png" width = 600>
   </div>
 
   {% highlight R %}
@@ -2334,7 +2334,7 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   {% endhighlight %}
 
   <div class= "text-center">
-    <img src= "{{site.url}}/images/Cao_2017_10.png" width = 600>
+    <img src= "{{site.baseurl}}/images/Cao_2017_10.png" width = 600>
   </div>
 
   {% highlight R %}
@@ -2343,7 +2343,7 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   {% endhighlight %}
 
   <div class= "text-center">
-    <img src= "{{site.url}}/images/Cao_2017_11.png" width = 600>
+    <img src= "{{site.baseurl}}/images/Cao_2017_11.png" width = 600>
   </div>
 
 </div>
