@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Monocle
+title: Cell Atlas of Worm
 email: coletrap@uw.edu
 description: > # this means to ignore newlines until "baseurl:"
-  Monocle -  powerful software toolkit for single-cell analysis
-baseurl: "/single-cell-worm" 
-url: "http://cole-trapnell-lab.github.io/monocle-release" # the base hostname & protocol for your site, e.g. http://example.com
+  Cell Atlas of Worm -  The C. elegans trancriptome at single cell resolution
+baseurl: "/single-cell-worm"
+url: "https://github.com/cole-trapnell-lab/single-cell-worm" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: coletrapnell
 #github_username:  ctrapnell
 
