@@ -60,11 +60,34 @@ It aims to cover the following use cases:</p>
 
 {% highlight R %}
   suppressPackageStartupMessages({
+    library(monocle)
     library(dplyr)
     library(ggplot2)
-    library(monocle)
   })
 {% endhighlight %}
+
+<p> This RData file contains both the data and some utility functions to help navigate it. </p>
+
+{% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/Cao_et_al_2017_vignette.RData",
+  destfile = "Cao_et_al_2017_vignette.RData")
+{% endhighlight %}
+
+{% highlight R %}
+  load("Cao_et_al_2017_vignette.RData")
+{% endhighlight %}
+
+<br>
+
+<ul>
+  <li> cds is a Monocle CellDataSet object containing the single cell RNA-seq data from the main L2-stage C. elegans experiment described in Cao et al., along with annotations. </li>
+  <li> cds.neurons is a re-clustered subset of the neuronal cells from cds. </li>
+  <li> cds.experiment.2 has data from the second C. elegans experiment described in Cao et al..
+    This includes intestine cells that were missed in the first experiment, but the data overall is lower quality than the first experiment.
+    In the manuscript, we only included the intestine cells from this experiment and excluded the rest. </li>
+</ul>
+
 
 <h3> Use of Monocle </h3>
 
@@ -731,7 +754,7 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 </div>
 
 
-<h2>Use Case 3: Differential Expression of Cells' Subset</h2>
+<h2>Use Case 3: Differential expression between cell subsets</h2>
 
 
 <p> We've defined a function <em>two.set.differential.gene.test</em> that finds and reports statistics on differentially expressed genes (DEG) that distinguish between two defined sets of cells.
@@ -1845,7 +1868,7 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
 </div>
 
 
-<h2>Use Case 4: Re-Clustering Data Subsets using t-SNE</h2>
+<h2>Use Case 4: Re-clustering cell subsets using t-SNE</h2>
 
 <p>In the Cao et al. paper, we found that several of the neuron t-SNE clusters expressed markers of cholinergic neurons such as unc-17, cho-1, and cha-1.
 Let's perform a sub-clustering of these cholinergic neurons to see if we can get better separation.
