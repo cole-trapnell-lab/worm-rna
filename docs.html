@@ -1037,7 +1037,7 @@ ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
 </tbody>
 </table>
 
-Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute Benjamini Hochberg corrected p-values (the false detection rate at which a gene can be considered to be differentially expressed between the two sets). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
+Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute q-value (p-value after Benjamini Hochberg correction). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
 
 {% highlight R %}
 system.time({
