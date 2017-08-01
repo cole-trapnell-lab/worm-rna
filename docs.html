@@ -78,16 +78,6 @@ download.file(
   load("Cao_et_al_2017_vignette.RData")
 {% endhighlight %}
 
-<br>
-
-<ul>
-  <li> cds is a Monocle CellDataSet object containing the single cell RNA-seq data from the main L2-stage C. elegans experiment described in Cao et al., along with annotations. </li>
-  <li> cds.neurons is a re-clustered subset of the neuronal cells from cds. </li>
-  <li> cds.experiment.2 has data from the second C. elegans experiment described in Cao et al..
-    This includes intestine cells that were missed in the first experiment, but the data overall is lower quality than the first experiment.
-    In the manuscript, we only included the intestine cells from this experiment and excluded the rest. </li>
-</ul>
-
 
 <h3> Use of Monocle </h3>
 
@@ -206,9 +196,9 @@ The <em>pData</em> function is used to access cell annotations.
 
 <ul>
   <li> n.umi is the number of unique molecular identifiers observed to be expressed by a given cell. </li>
-  <li> Size_Factor is n.umi divided by the media n.umi across all cells. </li>
-  <li> tsne_1 and tsne_2 are the coordinates for the cell in the t-SNE dimensionality reduction. </li>
-  <li> Cluster is the id of the t-SNE cluster the cell is part of (defined by density peak clustering). </li>
+  <li> Size_Factor is n.umi divided by the geometric mean of n.umi across all cells. </li>
+  <li> tsne_1 and tsne_2 are the coordinates for the cell in the first two t-SNE reduced dimension. </li>
+  <li> Cluster is the cluster id assigned by density peak clustering algorithm applied on the first two t-SNE reduced dimensions. </li>
   <li> cell.type and tissue are the annotations that we used throughout the analysis of Cao et al. </li>
 </ul>
 
@@ -1047,7 +1037,7 @@ ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
 </tbody>
 </table>
 
-Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute q-values (the false detection rate at which a gene can be considered to be differentially expressed between the two sets). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
+Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute Benjamini Hochberg corrected p-values (the false detection rate at which a gene can be considered to be differentially expressed between the two sets). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
 
 {% highlight R %}
 system.time({
