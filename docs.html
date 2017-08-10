@@ -229,12 +229,12 @@ fData(cds)[1:3,]
       </tr>
       <tr>
         <th><code>tsne_1</code> and <code>tsne_2</code></th>
-        <th>the coordinates for the cell in the first two t-SNE reduced dimensions</th>
+        <th>the coordinates for the cell in the t-SNE dimensionality reduction</th>
       </tr>
 
       <tr>
         <th><code>Cluster</code></th>
-        <th>the cluster id assigned by density peak clustering algorithm applied on the first two t-SNE reduced dimensions</th>
+        <th>the cluster id assigned by the density peak clustering algorithm</th>
       </tr>
 
       <tr>
@@ -1038,7 +1038,7 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
 
     <tr>
       <th><code>f.score</code></th>
-      <th>geometric mean of precision and recall. genes are sorted by this metric</th>
+      <th>harmonic mean of precision and recall. genes are sorted by this metric</th>
     </tr>
 
   </tbody>
@@ -1252,7 +1252,7 @@ ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
 
 <br>
 
-Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute q-value (p-value after Benjamini Hochberg correction). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
+Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute q-value (the false detection rate at which a gene can be considered to be differentially expressed between the two sets). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
 
 {% highlight R %}
 system.time({
