@@ -66,7 +66,11 @@ It aims to cover the following use cases:</p>
   })
 {% endhighlight %}
 
+<br>
+
 <p> This RData file contains both the data and some utility functions to help navigate it. </p>
+
+<br>
 
 {% highlight R %}
 download.file(
@@ -87,9 +91,13 @@ download.file(
   The source code of Monocle 2.3.5 is provided as a supplementary data file for the paper.
   You can install it using the command: </p>
 
+  <br>
+
   {% highlight R %}
     R CMD INSTALL monocle_2.3.5.tar.gz
   {% endhighlight %}
+
+<br>
 
   <p> Later versions of Monocle may produce different results for use case 4 (re-clustering with t-SNE) due to changes in how we preprocess the data before running t-SNE.
     We will update this vignette when we release the next version of Monocle, 2.6.0, to support the new version. </p>
@@ -112,6 +120,8 @@ are also hosted at this site. </p>
 
 <p> If you aren't familiar with working with single cell RNA-seq data, we highly recommend that you take a look at the examples and utility functions presented in the other sections of this document instead of trying to dive in to the raw data directly.
 </p>
+
+<br>
 
 {% highlight R %}
   exprs(cds)[1:3, 1:3]
@@ -162,6 +172,8 @@ are also hosted at this site. </p>
     </tr>
   </table>
 
+<br>
+
 {% highlight R %}
 fData(cds)[1:3,]
 {% endhighlight %}
@@ -193,15 +205,44 @@ fData(cds)[1:3,]
   </tr>
 </table>
 
+<br>
+<br>
+
 <p> The <em>pData</em> function is used to access cell annotations.
 
-<ul>
-  <li> n.umi is the number of unique molecular identifiers observed to be expressed by a given cell. </li>
-  <li> Size_Factor is n.umi divided by the geometric mean of n.umi across all cells. </li>
-  <li> tsne_1 and tsne_2 are the coordinates for the cell in the first two t-SNE reduced dimensions. </li>
-  <li> Cluster is the cluster id assigned by density peak clustering algorithm applied on the first two t-SNE reduced dimensions. </li>
-  <li> cell.type and tissue are the annotations that we used throughout the analysis of Cao et al. </li>
-</ul> </p>
+
+  <table class = "table">
+    <thead>
+      <tr>
+        <th> annotation </th>
+        <th> description </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><code>n.umi</code></th>
+        <th>the number of unique molecular identifiers observed to be expressed by a given cell</th>
+      </tr>
+      <tr>
+        <th><code>Size_Factor</code></th>
+        <th>n.umi divided by the geometric mean of n.umi across all cells</th>
+      </tr>
+      <tr>
+        <th><code>tsne_1</code> and <code>tsne_2</code></th>
+        <th>the coordinates for the cell in the first two t-SNE reduced dimensions</th>
+      </tr>
+
+      <tr>
+        <th><code>Cluster</code></th>
+        <th>the cluster id assigned by density peak clustering algorithm applied on the first two t-SNE reduced dimensions</th>
+      </tr>
+
+      <tr>
+        <th><code>cell.type</code> and <code>tissue</code></th>
+        <th>the cluster id assigned by density peak clustering algorithm applied on the first two t-SNE reduced dimensions</th>
+      </tr>
+    </tbody>
+  </table>
 
 {% highlight R %}
 pData(cds)[1:3,]
@@ -432,19 +473,58 @@ pData(cds)[1:3,]
 
   <p> the function returns a data frame with five columns: </p>
 
-  <ul>
-    <li> facet -- the tissue / cell type / neuron type
-    <li> tpm -- the expression of the given gene in the facet in TPM (transcripts per million).
-    <li> prop.cells.expr -- the proportion of cells in the facet that express at least one UMI (unique molecular identifier) for the given gene.
-      Note that cells in different facets can have very different average number of UMIs per cell, so TPM is the better measure of relative expression.
-    <li> n.umi -- the number of UMIs (unique molecular identifiers) observed for the given gene in the facet.
-      This is the "sample size" from which the TPM value is computed.
-    <li> total.n.umi.for.facet -- the total number of UMIs observed across all genes for all cells in the facet.
-  </ul>
+  <table class = "table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><code>facet</code></th>
+        <th>the tissue / cell type / neuron type</th>
+      </tr>
+      <tr>
+        <th><code>tpm</code></th>
+        <th>the expression of the given gene in the facet in TPM (transcripts per million)</th>
+      </tr>
 
-  <p> Note that low levels of expression of a given gene in cell types you would not expect may be due to leakage of RNA in the fixed cells.
-    For this experiment, based on the expression patterns for a few marker genes, we estimate that the background level of expression you will observe randomly in cells that do not truly express a given gene is ~1-2% of the expression of the highest-expressing cell type. </p>
+      <tr>
+        <th><code>prop.cells.expr</code></th>
+        <th>the proportion of cells in the facet that express at least one UMI (unique molecular identifier) for the given gene.
+          Note that cells in different facets can have very different average number of UMIs per cell, so TPM is the better measure of relative expression.</th>
+      </tr>
 
+      <tr>
+        <th><code>n.umi</code></th>
+        <th>the number of UMIs (unique molecular identifiers) observed for the given gene in the facet.
+          This is the "sample size" from which the TPM value is computed</th>
+      </tr>
+
+      <tr>
+        <th><code>total.n.umi.for.facet</code></th>
+        <th>the total number of UMIs observed across all genes for all cells in the facet</th>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class= "panel panel-warning">
+    <div class= "panel-heading">
+
+      <h3 class= "panel-title" data-toc-skip>RNA Leakage</h3>
+
+    </div>
+    <div class= "panel-body">
+
+      <p>Note that low levels of expression of a given gene in cell types you would not expect may be due to leakage of RNA in the fixed cells.
+        For this experiment, based on the expression patterns for a few marker genes, we estimate that the background level of expression you will observe randomly in cells that do not truly express a given gene is ~1-2% of the expression of the highest-expressing cell type.</p>
+
+    </div>
+  </div>
+
+
+<br>
 
   {%highlight R%}
   show.expr.info("emb-9", "tissue")
@@ -512,6 +592,8 @@ pData(cds)[1:3,]
     </tr>
   </tbody>
   </table>
+
+<br>
 
   {%highlight R%}
     show.expr.info("emb-9", "cell type") %>% head(10)
@@ -600,6 +682,8 @@ pData(cds)[1:3,]
     </tr>
   </tbody>
   </table>
+
+<br>
 
 {%highlight R%}
 show.expr.info("R102.2", "neuron type") %>% head(10)
@@ -690,8 +774,19 @@ show.expr.info("R102.2", "neuron type") %>% head(10)
 </tbody>
 </table>
 
-Note that you can see the source code for any of the utility functions used in this vignette.
-Just run the function with name no parentheses.
+<div class= "panel panel-warning">
+  <div class= "panel-heading">
+
+    <h3 class= "panel-title" data-toc-skip>Source Code of Utility Functions</h3>
+
+  </div>
+  <div class= "panel-body">
+
+    <p>Note that you can see the source code for any of the utility functions used in this vignette.
+    Just run the function with name no parentheses.</p>
+
+  </div>
+</div>
 
 {%highlight R%}
 show.expr.info
@@ -729,12 +824,16 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
   <li> Cells in the "Failed QC" category are those that express the gene, but are excluded from the analysis due to either having an unusually low UMI count or being a likely doublet.
 </ul>
 
+<br>
+
 {% highlight R %}
   plot.expr(cds, "lin-12")
 {% endhighlight %}
 <div class= "text-center">
   <img src= "{{site.baseurl}}/images/Cao_2017_1.png" width = 600>
 </div>
+
+<br>
 
 {% highlight R %}
   plot.expr(cds.neurons, "che-3")
@@ -753,19 +852,53 @@ The <em>plot.expr</em> function can be used to highlight cells that express a gi
 
 <em>two.set.differential.gene.test</em> takes four arguments:
 
-<ol>
-  <li> cds -- a CellDataSet object that includes both sets of cells you wish to compare
-  <li> set.1.filter -- a boolean vector of length ncol(cds) indicating which cells should be in Set 1
-  <li> set.2.filter -- a boolean vector of length ncol(cds) indicating which cells should be in Set 2
-  <li> formal -- if TRUE, p-values and q-values are computed for differential gene expression and genes are ranked by q-value.
-    if FALSE, no formal statistical test is performed and genes are heuristically ranked.
-    formal = F makes the function run much, much faster.
-</ol>
+<table class = "table">
+  <thead>
+    <tr>
+      <th>argument</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
 
-<b>Warning:</b> if you run <em>two.set.differential.gene.test </em> on large sets of cells (> 1000-ish), it may take a bunch of memory.
+    <tr>
+      <th><code>cds</code></th>
+      <th>a CellDataSet object that includes both sets of cells you wish to compare</th>
+    </tr>
 
-<p> The utility functions <em>is.tissue</em>, <em>is.cell.type</em>, and <em>is.neuron.type</em> may be used to create the boolean vectors required for the <em>set.1.filter</em> and <em>set.2.filter</em> parameters.
-  Each function takes a CellDataSet and a string and tests for each cell whether its tissue / cell type / neuron type is defined (not NA) and equal to the given value. </p>
+    <tr>
+      <th><code>set.1.filter</code></th>
+      <th>a boolean vector of length ncol(cds) indicating which cells should be in Set 1</th>
+    </tr>
+
+    <tr>
+      <th><code>set.2.filter</code></th>
+      <th>a boolean vector of length ncol(cds) indicating which cells should be in Set 2</th>
+    </tr>
+
+    <tr>
+      <th><code>formal</code></th>
+      <th>if TRUE, p-values and q-values are computed for differential gene expression and genes are ranked by q-value. if FALSE, no formal statistical test is performed and genes are heuristically ranked. formal = F makes the function run much, much faster</th>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class= "panel panel-warning">
+  <div class= "panel-heading">
+
+    <h3 class= "panel-title" data-toc-skip><b>Warning</b></h3>
+
+  </div>
+  <div class= "panel-body">
+
+    <p>If you run <em>two.set.differential.gene.test </em> on large sets of cells (> 1000-ish), it may take a bunch of memory.
+      The utility functions <em>is.tissue</em>, <em>is.cell.type</em>, and <em>is.neuron.type</em> may be used to create the boolean vectors required for the <em>set.1.filter</em> and <em>set.2.filter</em> parameters.
+        Each function takes a CellDataSet and a string and tests for each cell whether its tissue / cell type / neuron type is defined (not NA) and equal to the given value. </p>
+
+  </div>
+</div>
+
 
 {% highlight R %}
 is.tissue
@@ -780,40 +913,69 @@ function (cds, x)
 }
 {% endhighlight %}
 
+<br>
+
 {% highlight R %}
   head(is.tissue(cds, "Gonad"))
+
+  > FALSE TRUE FALSE FALSE FALSE TRUE
 {% endhighlight %}
 
-FALSE TRUE FALSE FALSE FALSE TRUE
+<br>
 
 {% highlight R %}
   sum(is.tissue(cds, "Gonad"))
+
+  > 5628
 {% endhighlight %}
-  5628
+
+<br>
 
 {% highlight R %}
 sum(is.cell.type(cds, "Distal tip cells"))
 sum(is.neuron.type(cds.neurons, "ASEL"))
+
+> 129
+> 37
 {% endhighlight %}
-129
+
 <br>
-37
 
 {% highlight R %}
   tissues
+
+  > 'Body wall muscle' 'Pharynx' 'Hypodermis' 'Neurons' 'Gila' 'Gonad' 'Intestine'
 {% endhighlight %}
-  'Body wall muscle' 'Pharynx' 'Hypodermis' 'Neurons' 'Gila' 'Gonad' 'Intestine'
+
+<br>
 
 {% highlight R %}
   cell.types
+
+  > 'Am/PH sheath cells' 'Body wall muscle' 'Canal associated neurons'
+  'Cholinergic neurons' 'Ciliated sensory neurons' 'Coelomocytes' 'Distal tip cells'
+  'Dopaminergic neurons' 'Excretory cells' 'flp-1(+) interneurons'
+  'GABAergic neurons' 'Germline' 'Intestinal/rectal muscle' 'Intestine'
+  'Non-seam hypodermis' 'Other interneurons' 'Oxygen sensory neurons'
+  'Pharyngeal epithelia' 'Pharyngeal gland' 'Pharyngeal muscle' 'Pharyngeal neurons'
+  'Rectum' 'Seam cells' 'Sex myoblasts' 'Socket cells' 'Somatic gonad precursors'
+  'Touch receptor neurons' 'Vulval precursors'
 {% endhighlight %}
 
-'Am/PH sheath cells' 'Body wall muscle' 'Canal associated neurons' 'Cholinergic neurons' 'Ciliated sensory neurons' 'Coelomocytes' 'Distal tip cells' 'Dopaminergic neurons' 'Excretory cells' 'flp-1(+) interneurons' 'GABAergic neurons' 'Germline' 'Intestinal/rectal muscle' 'Intestine' 'Non-seam hypodermis' 'Other interneurons' 'Oxygen sensory neurons' 'Pharyngeal epithelia' 'Pharyngeal gland' 'Pharyngeal muscle' 'Pharyngeal neurons' 'Rectum' 'Seam cells' 'Sex myoblasts' 'Socket cells' 'Somatic gonad precursors' 'Touch receptor neurons' 'Vulval precursors'
+<br>
 
 {% highlight R %}
   neuron.types
+  'AFD' 'ASEL' 'ASER' 'ASG' 'ASI/ASJ' 'ASK' 'AWA' 'AWB/AWC' 'BAG' 'CAN'
+  'Cholinergic (11)' 'Cholinergic (15)' 'Cholinergic (23)' 'Cholinergic (24)'
+  'Cholinergic (26)' 'Cholinergic (29)' 'Cholinergic (3)' 'Cholinergic (35)'
+  'Cholinergic (36)' 'Cluster 10' 'Cluster 13' 'Cluster 16' 'Cluster 17'
+  'Cluster 21' 'Cluster 25' 'Cluster 27' 'Cluster 40' 'Cluster 5' 'Dopaminergic'
+  'DVA' 'flp-1(+)' 'GABAergic' 'Pharyngeal (33)' 'Pharyngeal (37)' 'PVC/PVD'
+  'RIA' 'RIC' 'SDQ/ALN/PLN' 'Touch receptor' 'URX/AQR/PQR'
 {% endhighlight %}
-'AFD' 'ASEL' 'ASER' 'ASG' 'ASI/ASJ' 'ASK' 'AWA' 'AWB/AWC' 'BAG' 'CAN' 'Cholinergic (11)' 'Cholinergic (15)' 'Cholinergic (23)' 'Cholinergic (24)' 'Cholinergic (26)' 'Cholinergic (29)' 'Cholinergic (3)' 'Cholinergic (35)' 'Cholinergic (36)' 'Cluster 10' 'Cluster 13' 'Cluster 16' 'Cluster 17' 'Cluster 21' 'Cluster 25' 'Cluster 27' 'Cluster 40' 'Cluster 5' 'Dopaminergic' 'DVA' 'flp-1(+)' 'GABAergic' 'Pharyngeal (33)' 'Pharyngeal (37)' 'PVC/PVD' 'RIA' 'RIC' 'SDQ/ALN/PLN' 'Touch receptor' 'URX/AQR/PQR'
+
+<br>
 
 {% highlight R %}
 ASEL.vs.ASER.DEG = two.set.differential.gene.test(
@@ -821,18 +983,66 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
     is.neuron.type(cds.neurons, "ASER"))
 {% endhighlight %}
 
+<br>
+
 <em>two.set.differential.gene.test</em> returns the following statistics:
-<ul>
-  <li> set.1.umi -- the number of UMI (unique molecular identifiers) observed for the gene in Set 1
-  <li> set.2.umi -- the number of UMI (unique molecular identifiers) observed for the gene in Set 2
-  <li> set.1.tpm -- gene expression in Set 1 in TPM (transcripts per million)
-  <li> set.2.tpm -- gene expression in Set 2 in TPM (transcripts per million)
-  <li> higher.expr -- which set has higher expression (TPM)
-  <li> log2.ratio -- log2(TPM of higher expressing set / (TPM of lower expressing set + 1))
-  <li> precision -- (# of cells expressing gene in higher expressing set) / (total # of cells expressing gene)
-  <li> recall -- (# of cells expressing gene in higher expressing set) / (total # of cells in higher expressing set)
-  <li> f.score -- geometric mean of precision and recall. genes are sorted by this metric
-</ul>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>argument</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th><code>set.1.umi</code></th>
+      <th>the number of UMI (unique molecular identifiers) observed for the gene in Set 1</th>
+    </tr>
+
+    <tr>
+      <th><code>set.2.umi</code></th>
+      <th>the number of UMI (unique molecular identifiers) observed for the gene in Set 2</th>
+    </tr>
+
+    <tr>
+      <th><code>set.1.tpm</code></th>
+      <th>gene expression in Set 1 in TPM (transcripts per million)</th>
+    </tr>
+
+    <tr>
+      <th><code>set.2.tpm</code></th>
+      <th>set.2.tpm -- gene expression in Set 2 in TPM (transcripts per million)</th>
+    </tr>
+
+    <tr>
+      <th><code>higher.expr</code></th>
+      <th>the number of UMI (unique molecular identifiers) observed for the gene in Set 1</th>
+    </tr>
+
+    <tr>
+      <th><code>log2.ratio</code></th>
+      <th>the number of UMI (unique molecular identifiers) observed for the gene in Set 2</th>
+    </tr>
+
+    <tr>
+      <th><code>precision</code></th>
+      <th>gene expression in Set 1 in TPM (transcripts per million)</th>
+    </tr>
+
+    <tr>
+      <th><code>recall</code></th>
+      <th>set.2.tpm -- gene expression in Set 2 in TPM (transcripts per million)</th>
+    </tr>
+
+    <tr>
+      <th><code>f.score</code></th>
+      <th>geometric mean of precision and recall. genes are sorted by this metric</th>
+    </tr>
+
+  </tbody>
+</table>
 
 {%highlight R%}
   ASEL.vs.ASER.DEG %>% head()
@@ -934,6 +1144,8 @@ ASEL.vs.ASER.DEG = two.set.differential.gene.test(
   </tr>
 </tbody>
 </table>
+
+<br>
 
 {% highlight R %}
 ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
@@ -1037,6 +1249,8 @@ ASEL.vs.ASER.DEG %>% filter(higher.expr == "Set 1")
   </tr>
 </tbody>
 </table>
+
+<br>
 
 Running <em>two.set.differential.gene.test</em> with <em>formal = T</em> will compute q-value (p-value after Benjamini Hochberg correction). This is very slow however, so we recommend not using it for exploratory analysis and only using it after you've found something interesting and want to verify that the finding is statistically robust.
 
@@ -1446,8 +1660,11 @@ BWM.anterior.vs.posterior.DEG$higher.expr = ifelse(
 </table>
 </div>
 
-<em>R102.2</em> is expressed in  <a href = "http://www.wormbase.org/species/c_elegans/gene/WBGene00011289"> nine specific pairs of ciliated sensory neurons </a>.
-We have identified some of these in this dataset, but others remain ambiguous.
+<p><em>R102.2</em> is expressed in  <a href = "http://www.wormbase.org/species/c_elegans/gene/WBGene00011289"> nine specific pairs of ciliated sensory neurons </a>.
+We have identified some of these in this dataset, but others remain ambiguous.</p>
+
+<br>
+<br>
 
 {% highlight R %}
   show.expr.info("R102.2", "neuron type") %>% head(8)
@@ -1523,13 +1740,19 @@ We have identified some of these in this dataset, but others remain ambiguous.
 </tbody>
 </table>
 
+<br>
+
 {% highlight R %}
 plot.expr(cds.neurons, "R102.2")
 {% endhighlight %}
 
+<br>
+
 <div class= "text-center">
   <img src= "{{site.baseurl}}/images/Cao_2017_3.png" width = 600>
 </div>
+
+<br>
 
 <em> two.set.differential.gene.test </em> can be used to find DEG between the mystery R102.2(+) clusters and other ciliated sensory neurons. If you can figure out what these clusters correspond to, let us know!
 
@@ -1694,6 +1917,8 @@ neuron.cluster.21.vs.other.CSN.DEG$higher.expr = ifelse(
  </tbody>
  </table>
  </div>
+
+<br>
 
 {% highlight R %}
 neuron.cluster.16.vs.other.CSN.DEG =
@@ -1861,9 +2086,13 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
 
 <h2>Use Case 4: Re-clustering cell subsets using t-SNE</h2>
 
+<br>
+
 <p>In the Cao et al. paper, we found that several of the neuron t-SNE clusters expressed markers of cholinergic neurons such as unc-17, cho-1, and cha-1.
 Let's perform a sub-clustering of these cholinergic neurons to see if we can get better separation.
 First, we'll identify which clusters are enriched for cells that express cholinergic markers.</p>
+
+<br>
 
 <p>
 {% highlight R %}
@@ -1891,6 +2120,7 @@ pData(cds.neurons) %>%
 {%endhighlight%}
 </p>
 
+<br>
 
 <table class = "table" style="overflow:auto;">
   <thead>
@@ -2012,6 +2242,8 @@ pData(cds.neurons) %>%
 </table>
 <p>
 
+<br>
+
 {%highlight R%}
 cholinergic.clusters = c(29, 23, 3, 26, 35, 36, 15, 24, 11)
 plot_cell_clusters(cds.neurons, color =
@@ -2023,6 +2255,8 @@ plot_cell_clusters(cds.neurons, color =
   <img src= "{{site.baseurl}}/images/Cao_2017_4.png" width = 600>
 </div>
 
+<br>
+
 {% highlight R %}
 cds.cholinergic =
     cds.neurons[, pData(cds.neurons)$Cluster %in%
@@ -2033,11 +2267,15 @@ cds.cholinergic = estimateSizeFactors(cds.cholinergic)
 cds.cholinergic = estimateDispersions(cds.cholinergic)
     # above line would take a lot of memory for larger cell sets
 cds.cholinergic = detectGenes(cds.cholinergic, 0.1)
+
+> 3433 cells in the cds subset
 {% endhighlight %}
 
-<p> 3433 cells in the cds subset </p>
+<br>
 
 <p> The next step is to run a new t-SNE dimensionality reduction on this subset of cells. </p>
+
+<br>
 
 <p>
   {% highlight R %}
@@ -2068,6 +2306,8 @@ pData(cds.cholinergic)$tsne_2 = reducedDimA(cds.cholinergic)[2,]
 <p> 20 principal components looks like it's enough for this data.
   If you don't see an elbow in the scree plot, that means you've used too few principal components. </p>
 
+<br>
+
 {% highlight R %}
   plot_pc_variance_explained(cds.cholinergic)
 {% endhighlight %}
@@ -2075,6 +2315,8 @@ pData(cds.cholinergic)$tsne_2 = reducedDimA(cds.cholinergic)[2,]
 <div class= "text-center">
   <img src= "{{site.baseurl}}/images/Cao_2017_5.png" width = 600>
 </div>
+
+<br>
 
 {% highlight R %}
 ggplot(pData(cds.cholinergic), aes(x = tsne_1, y = tsne_2)) +
@@ -2086,17 +2328,23 @@ ggplot(pData(cds.cholinergic), aes(x = tsne_1, y = tsne_2)) +
   <img src= "{{site.baseurl}}/images/Cao_2017_6.png" width = 600>
 </div>
 
+<br>
+
 <p> Now we'll cluster the cells in the t-SNE space using density peak clustering.
 In density peak clustering, rho measures to the local density of cells and delta measures the minimum distance to a region of higher local density.
 Go to <a href = "http://science.sciencemag.org/content/344/6191/1492"> this site </a> for more details.
 You want to set thresholds on rho and delta that enclose the outlier points in the scatter plot.
 In my experience, it's usually better to over-cluster than to under-cluster. </p>
 
+<br>
+
 {% highlight R %}
   cds.cholinergic = clusterCells_Density_Peak(cds.cholinergic)
+
+  > Distance cutoff calculated to 2.694535
 {% endhighlight %}
 
-<p> Distance cutoff calculated to 2.694535 </p>
+<br>
 
 {% highlight R %}
   plot_rho_delta(cds.cholinergic,
@@ -2108,6 +2356,8 @@ In my experience, it's usually better to over-cluster than to under-cluster. </p
   <img src= "{{site.baseurl}}/images/Cao_2017_7.png" width = 600>
 </div>
 
+<br>
+
 {% highlight R %}
 cds.cholinergic = clusterCells_Density_Peak(cds.cholinergic,
     rho_threshold = 10, delta_threshold = 6, skip_rho_sigma = T)
@@ -2118,25 +2368,35 @@ plot_cell_clusters(cds.cholinergic, cell_size = 0.2)
   <img src= "{{site.baseurl}}/images/Cao_2017_8.png" width = 600>
 </div>
 
+<br>
+
 <p> Looks like there are many distinct clusters.
   Recall that we input only 9 clusters from the cds.neurons t-SNE into this re-clustering.
   The re-clustering appears to have revealed new potential distinct cell types. </p>
 
 <p> Now would be a good time to save your progress </p>
 
+<br>
+
 {% highlight R %}
   save.image("my_analysis_Cao_et_al_data.RData")
 {% endhighlight %}
 
+<br>
+
 <p> Let's find marker genes for each cluster. </p>
+
+<br>
 
 {% highlight R %}
   cholinergic.clusters =
       sort(as.integer(unique(pData(cds.cholinergic)$Cluster)))
   cholinergic.clusters
+
+> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
 {% endhighlight %}
 
-<p> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 </p>
+<br>
 
 {% highlight R %}
 DEG.results = lapply(cholinergic.clusters,
@@ -2151,6 +2411,8 @@ DEG.results = lapply(cholinergic.clusters,
 })
 {% endhighlight %}
 
+<br>
+
 {% highlight R %}
 cholinergic.cluster.markers =
     do.call(rbind, DEG.results) %>%
@@ -2164,6 +2426,8 @@ cholinergic.cluster.markers =
       log2.ratio, precision, recall, f.score) %>%
   arrange(-f.score)
 {% endhighlight %}
+
+<br>
 
 {% highlight R %}
   cholinergic.cluster.markers %>%
@@ -2328,10 +2592,14 @@ cholinergic.cluster.markers =
 <p>In the previous examples for using <em>plot.expr</em>, the function used pre-computed expression tables for <em>cds</em> and <em>cds.neurons</em> to show which cell types / neuron types were expressing a given gene.
   The following code will set up <em>plot.expr</em> so it can show which density peak clusters from this re-clustering analysis express a given gene.</p>
 
+<br>
+
   {% highlight R %}
 cholinergic.expr.info = get.expr.info.by.facet(cds.cholinergic,
   "Cluster")
   {% endhighlight %}
+
+<br>
 
   {% highlight R %}
 plot.expr(cds.cholinergic, "lgc-39", expr.info =
@@ -2342,6 +2610,8 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
     <img src= "{{site.baseurl}}/images/Cao_2017_9.png" width = 600>
   </div>
 
+<br>
+
   {% highlight R %}
     plot.expr(cds.cholinergic, "vglu-2", expr.info =
       cholinergic.expr.info)
@@ -2351,6 +2621,8 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
     <img src= "{{site.baseurl}}/images/Cao_2017_10.png" width = 600>
   </div>
 
+<br>
+
   {% highlight R %}
     plot.expr(cds.cholinergic, "unc-17", expr.info =
       cholinergic.expr.info)
@@ -2359,6 +2631,8 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
   <div class= "text-center">
     <img src= "{{site.baseurl}}/images/Cao_2017_11.png" width = 600>
   </div>
+
+<br>
 
 </div>
 </div>

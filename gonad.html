@@ -1,0 +1,850 @@
+---
+layout: vanilla
+permalink: /gonad/
+description: "Documentation for Cell Atlas of Worm."
+modified: 2013-09-11
+tags: [worm, manual, vignette, atlas]
+---
+<!DOCTYPE html>
+<html lang= "{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <!-- See here for how to use the TOC control:
+  https://afeld.github.io/bootstrap-toc/ -->
+  <body  data-spy= "scroll" data-target= "#toc">
+    {% include header.html %}
+
+    <div class= "container">
+      <div class= "row">
+        <!-- sidebar, which will move to the top on a small screen -->
+          <nav id= "toc" data-spy= "affix" data-toggle= "toc"></nav>
+        </div>
+        <!-- main content area -->
+        <div class= "col-sm-9">
+
+
+  {% highlight R %}
+
+suppressPackageStartupMessages({
+   library(monocle)
+
+   library(RColorBrewer)
+   library(dplyr)
+   library(ggplot2)
+   library(reshape2)
+   library(scales)
+ })
+
+  {% endhighlight %}
+
+            <br>
+
+            <p>This analysis was made using Monocle version 2.3.5.
+              The source code for Monocle 2.3.5 is available as a supplementary file to Cao et al. 2017 on the Science website.
+              We are working on updating the analysis to the latest version of Monocle. </p>
+
+              <br>
+
+          {% highlight R %}
+  sessionInfo()
+          {% endhighlight %}
+
+          <br>
+
+          <table class = "table">
+            <tr>
+              <th>R version 3.2.1 (2015-06-18)</th>
+            </tr>
+            <tr>
+              <th>Platform: x86_64-unknown-linux-gnu (64-bit)</th>
+            </tr>
+            <tr>
+              <th>Running under: CentOS release 6.8 (Final)</th>
+            </tr>
+          </table>
+
+          <br>
+
+          <table class = "table">
+            <thead>
+              <tr>
+                <th>locale:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th> [1] LC_CTYPE=en_US.UTF-8 </th>
+                <th> LC_NUMERIC=C </th>
+              </tr>
+              <tr>
+                <th> [3] LC_TIME=en_US.UTF-8  </th>
+                <th> LC_COLLATE=en_US.UTF-8  </th>
+              </tr>
+              <tr>
+                <th> [5] LC_MONETARY=en_US.UTF-8 </th>
+                <th> LC_MESSAGES=en_US.UTF-8 </th>
+              </tr>
+              <tr>
+                <th> [7] LC_PAPER=en_US.UTF-8 </th>
+                <th> LC_NAME=C </th>
+              </tr>
+              <tr>
+                <th> [9] LC_ADDRESS=C  </th>
+                <th> LC_TELEPHONE=C   </th>
+              </tr>
+              <tr>
+                  <th> [11] LC_MEASUREMENT=en_US.UTF-8 </th>
+                  <th> LC_IDENTIFICATION=C </th>
+                </tr>
+            </tbody>
+          </table>
+
+          <br>
+
+          <table class = "table">
+            <thead>
+              <tr>
+                <th> attached base packages: </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th> [1] splines </th>
+                <th> stats4 </th>
+                <th> parallel </th>
+                <th> stats </th>
+                <th> graphics </th>
+                <th> grDevices </th>
+                <th> utils </th>
+              </tr>
+              <tr>
+                <th> [8] datasets </th>
+                <th> methods </th>
+                <th> base </th>
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+
+          <table class = "table">
+            <thead>
+              <tr>
+                <th> other attached packages: </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th> [1] scales_0.4.1 </th>
+                <th> reshape2_1.4.2 </th>
+                <th> dplyr_0.7.1 </th>
+              </tr>
+              <tr>
+                <th> [4] RColorBrewer_1.1-2 </th>
+                <th> monocle_2.3.5 </th>
+                <th> DDRTree_0.1.5 </th>
+              </tr>
+              <tr>
+                <th> [7] irlba_2.2.1 </th>
+                <th> VGAM_1.0-3 </th>
+                <th> ggplot2_2.2.1 </th>
+              </tr>
+              <tr>
+                <th> [10] Biobase_2.30.0 </th>
+                <th> BiocGenerics_0.16.1 </th>
+                <th> Matrix_1.2-7.1 </th>
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+
+          <table class = "table">
+            <thead>
+              <tr>
+                <th>loaded via a namespace (and not attached):</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>[1] Rcpp_0.12.11</th>
+                <th>bindr_0.1</th>
+                <th>plyr_1.8.4</th>
+              </tr>
+              <tr>
+                <th>[4] tools_3.2.1</th>
+                <th>digest_0.6.12</th>
+                <th>densityClust_0.2.1</th>
+              </tr>
+              <tr>
+                <th>[7] uuid_0.1-2</th>
+                <th>jsonlite_1.5</th>
+                <th>evaluate_0.10.1</th>
+              </tr>
+              <tr>
+                <th>[10] tibble_1.3.3 </th>
+                <th>gtable_0.2.0</th>
+                <th>lattice_0.20-35</th>
+              </tr>
+              <tr>
+                <th>[13] pkgconfig_2.0.1</th>
+                <th>rlang_0.1.1</th>
+                <th>igraph_1.0.1</th>
+              </tr>
+              <tr>
+                <th>[16] IRdisplay_0.4.4 </th>
+                <th>IRkernel_0.7 </th>
+                <th>HSMMSingleCell_0.104.0</th>
+              </tr>
+              <tr>
+                <th>[19] bindrcpp_0.2</th>
+                <th>fastICA_1.2-1</th>
+                <th>cluster_2.0.6</th>
+              </tr>
+              <tr>
+                <th>[22] repr_0.12.0</th>
+                <th>stringr_1.2.0</th>
+                <th>combinat_0.0-8</th>
+              </tr>
+              <tr>
+                <th>[25] grid_3.2.1</th>
+                <th>glue_1.1.1</th>
+                <th>R6_2.2.2</th>
+              </tr>
+              <tr>
+                <th>[28] qlcMatrix_0.9.5</th>
+                <th>pheatmap_1.0.8</th>
+                <th>limma_3.26.9</th>
+              </tr>
+              <tr>
+                <th>[31] pbdZMQ_0.2-6</th>
+                <th>magrittr_1.5</th>
+                <th>matrixStats_0.52.2</th>
+              </tr>
+              <tr>
+                <th>[34] assertthat_0.2.0</th>
+                <th>colorspace_1.3-2</th>
+                <th>stringi_1.1.5</th>
+              </tr>
+              <tr>
+                <th>[37] lazyeval_0.2.0</th>
+                <th>munsell_0.4.3</th>
+                <th>slam_0.1-35</th>
+              </tr>
+              <tr>
+                <th>[40] crayon_1.3.2</th>
+              </tr>
+            </table>
+
+{% highlight R %}
+system("mkdir -p RData")
+system("mkdir -p tables")
+{% endhighlight %}
+
+{% highlight R %}
+# at certain "checkpoints" in this notebook, we save our progress to
+    this RData file
+# run this cell to load your progress if you have already reached through one or
+    more checkpoints in the notebook
+
+load("RData/YA.cell.type.id.RData")
+{% endhighlight %}
+
+{% highlight R %}
+download.file(
+"http://jpacker-data.s3.amazonaws.com/public/C.elegans.WB253.gene.id.to.symbol",
+destfile = "RData/C.elegans.WB253.gene.id.to.symbol.tsv")
+{%  endhighlight %}
+
+{% highlight R %}
+gene.symbols = read.table(
+"RData/C.elegans.WB253.gene.id.to.symbol.tsv",
+col.names = c("gene", "symbol"), colClasses = rep("character", 2))
+
+rownames(gene.symbols) = gene.symbols$gene
+{% endhighlight %}
+
+{% highlight R %}
+mm.to.mat = function(mm.path, gene.annotation.path, cell.annotation.path,
+gene.symbols) {
+  df = read.table(
+  mm.path,
+  sep = ",",
+  col.names = c("gene.idx", "cell.idx", "count"),
+  colClasses = c("integer", "integer", "integer"))
+
+  mat = sparseMatrix(i = df$gene.idx, j = df$cell.idx, x = df$count)
+
+  gene.annotations = read.csv(
+  gene.annotation.path,
+  col.names = c("gene", "gene.type", "exon.intron", "symbol", "gene.idx"),
+      header=F)
+
+  cell.annotations = read.table(
+  cell.annotation.path, sep = ",",
+  col.names = c("cell", "cell.idx"))
+
+  rownames(mat) = as.character(gene.annotations$gene)
+  colnames(mat) = as.character(cell.annotations$cell)
+
+  mat.exon = mat[gene.annotations$exon.intron == "exon",]
+  mat.intron = mat[gene.annotations$exon.intron == "intron",]
+  nrow(mat.exon) == nrow(mat.intron)
+  mat = mat.exon + mat.intron
+  mat = mat[order(rownames(mat)),]
+  rm(list=c("df", "mat.exon", "mat.intron"))
+
+  mat = mat[rownames(mat) %in% rownames(gene.symbols),]
+}
+{% endhighlight %}
+
+{% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/YA_gonad/plate_1/count.mm",
+  destfile = "RData/YA.gonad.plate.1.count.mm")
+{% endhighlight %}
+
+{% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/YA_gonad/plate_1/
+      gene.annotations.tsv",
+  destfile = "RData/YA.gonad.plate.1.gene.annotations.tsv")
+{% endhighlight %}
+
+{% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/YA_gonad/plate_1/
+      cell.annotations.tsv",
+  destfile = "RData/YA.gonad.plate.1.cell.annotations.tsv")
+{% endhighlight %}
+
+{% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/YA_gonad/plate_2/count.mm",
+  destfile = "RData/YA.gonad.plate.2.count.mm")
+{% endhighlight %}
+
+{% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/YA_gonad/plate_2/
+      gene.annotations.tsv",
+  destfile = "RData/YA.gonad.plate.2.gene.annotations.tsv")
+            {% endhighlight %}
+
+  {% highlight R %}
+download.file(
+  "http://jpacker-data.s3.amazonaws.com/public/YA_gonad/plate_2/
+      cell.annotations.tsv",
+  destfile = "RData/YA.gonad.plate.2.cell.annotations.tsv")
+            {% endhighlight %}
+
+  {% highlight R %}
+plate.1.mat = mm.to.mat(
+  "RData/YA.gonad.plate.1.count.mm",
+  "RData/YA.gonad.plate.1.gene.annotations.tsv",
+  "RData/YA.gonad.plate.1.cell.annotations.tsv",
+  gene.symbols)
+  {% endhighlight %}
+
+  {% highlight R %}
+plate.2.mat = mm.to.mat(
+  "RData/YA.gonad.plate.2.count.mm",
+  "RData/YA.gonad.plate.2.gene.annotations.tsv",
+  "RData/YA.gonad.plate.2.cell.annotations.tsv",
+  gene.symbols)
+  {% endhighlight %}
+
+  {% highlight R %}
+plate.1.cells = colnames(plate.1.mat)
+plate.2.cells = colnames(plate.2.mat)
+  {% endhighlight %}
+
+{% highlight R %}
+mat = cbind(plate.1.mat, plate.2.mat)
+rm(list = c("plate.1.mat", "plate.2.mat"))
+{% endhighlight %}
+
+  {% highlight R %}
+pd = new("AnnotatedDataFrame", data = data.frame(
+  cell = colnames(mat),
+  row.names = colnames(mat),
+  n.umi = colSums(mat)))
+
+fd = new("AnnotatedDataFrame", data = data.frame(
+  gene = gene.symbols$gene,
+  symbol = gene.symbols$symbol,
+  row.names = gene.symbols$gene))
+
+cds = newCellDataSet(mat, phenoData = pd, featureData = fd,
+    expressionFamily = negbinomial.size())
+rm(list = c("mat", "pd", "fd"))
+  {% endhighlight %}
+
+{% highlight R %}
+pData(cds)$plate = ifelse(colnames(cds) %in% plate.1.cells, "Plate 1", ifelse(
+  colnames(cds) %in% plate.2.cells, "Plate 2", NA))
+{% endhighlight %}
+
+{% highlight R %}
+pData(cds) %>% group_by(plate) %>% summarize(
+  n = n(), med.n.umi = median(n.umi),
+  n.gt.200.umi = sum(n.umi >= 200),
+  prop.gt.200.umi = n.gt.200.umi / n,
+  med.n.umi.given.gt.200.umi = median(n.umi[n.umi >= 200]))
+{% endhighlight %}
+
+  <br>
+
+            <table class = "table">
+              <thead>
+                <tr>
+                  <th><b>plate</b></th>
+                  <th><b>n</b></th>
+                  <th><b>med.n.umi</b></th>
+                  <th><b>n.gt.200.umi</b></th>
+                  <th><b>prop.gt.200.umi</b></th>
+                  <th><b>med.n.umi.given.gt.200.umi</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Plate 1</th>
+                  <th>8099</th>
+                  <th>407</th>
+                  <th>5336</th>
+                  <th>0.6588468</th>
+                  <th>649</th>
+                </tr>
+                <tr>
+                  <th>Plate 2</th>
+                  <th>13120</th>
+                  <th>248</th>
+                  <th>7264</th>
+                  <th>0.5536585</th>
+                  <th>546</th>
+                </tr>
+              </tbody>
+            </table>
+
+        <br>
+
+{% highlight R %}
+original.cds = cds
+  cds = original.cds[, pData(cds)$n.umi >= 200]
+  dim(cds)
+{% endhighlight %}
+
+        <br>
+
+            <table class = "table">
+              <tr>
+                <th><b>Features</b></th>
+                <th>20271</th>
+              </tr>
+              <tr>
+                <th><b>Samples</b></th>
+                <th>12600</th>
+              </table>
+
+        <br>
+
+{% highlight R %}
+cds = estimateSizeFactors(cds)
+cds = estimateDispersions(cds)
+cds = detectGenes(cds, 0.1)
+{% endhighlight %}
+
+              <br>
+
+{% highlight R %}
+set.seed(42)
+cds = reduceDimension(
+  cds, max_components = 2, norm_method = "log",
+  num_dim = 20, reduction_method = "tSNE",
+  verbose = T)
+
+pData(cds)$tsne_1 = reducedDimA(cds)[1,]
+pData(cds)$tsne_2 = reducedDimA(cds)[2,]
+{% endhighlight %}
+
+{% highlight R %}
+plot_pc_variance_explained(cds)
+{% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-1.png" width = 600>
+              </div>
+
+{% highlight R %}
+cds = clusterCells_Density_Peak(cds)
+plot_cell_clusters(cds, cell_size = 0.333)
+{% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-2.png" width = 600>
+              </div>
+
+{% highlight R %}
+plot_rho_delta(cds, rho_threshold = 10, delta_threshold = 5)
+{% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-3.png" width = 600>
+              </div>
+
+{% highlight R %}
+cds = clusterCells_Density_Peak(cds,
+  rho_threshold = 10, delta_threshold = 5, skip_rho_sigma = T)
+plot_cell_clusters(cds, cell_size = 0.333)
+{% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-4.png" width = 600>
+              </div>
+
+  {% highlight R %}
+ggplot(pData(cds), aes(x = tsne_1, y = tsne_2, color = plate)) +
+  geom_point(size = 0.2) +
+  monocle:::monocle_theme_opts()
+  {% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-5.png" width = 600>
+              </div>
+
+{% highlight R %}
+get.cluster.markers = function(cds) {
+  cluster_means = lapply(1:length(unique(pData(cds)$Cluster)),
+             function(x) rowMeans(exprs(cds)[, pData(cds)$Cluster == x]))
+  cluster_means = t(do.call(rbind, cluster_means))
+  colnames(cluster_means) = 1:length(unique(pData(cds)$Cluster))
+  specificity_scores = apply(cluster_means, 1,
+      function(x) 1 - sum(x >= 0.1*max(x))/length(x))
+  cluster_marker_scores = sweep(cluster_means, 1,
+      specificity_scores^3, "*")
+
+  cluster_marker_df = melt(cluster_marker_scores)
+  names(cluster_marker_df) = c("gene", "cluster", "score")
+  cluster_marker_df = inner_join(cluster_marker_df,
+      fData(cds)[, 1:3], by= "gene") %>%
+    group_by(cluster) %>% arrange(-score) %>% mutate(rank = rank(-score)) %>%
+    filter(rank <= 100) %>% arrange(cluster, rank)
+
+  return(cluster_marker_df)
+}
+{% endhighlight %}
+
+{% highlight R %}
+
+plot_cell_clusters(cds, color = "Cluster == 12", cell_size = 0.2)
+
+{% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-6.png" width = 600>
+              </div>
+
+{% highlight R %}
+cluster.markers = get.cluster.markers(cds)
+{% endhighlight %}
+
+{% highlight R %}
+cluster.markers %>% filter(cluster == 12) %>% head(20)
+{% endhighlight %}
+
+<br>
+
+              <table class = "table">
+                <thead>
+                  <tr>
+                    <th>gene</th>
+                    <th>cluster</th>
+                    <th>score</th>
+                    <th>symbol</th>
+                    <th>num_cells_expressed</th>
+                    <th>rank</th>
+                  </tr>
+                  <tbody>
+                    <tr>
+                      <th>WBGene00021605</th>
+                      <th>12</th>
+                      <th>5.3228951</th>
+                      <th>Y46H3C.5</th>
+                      <th>876</th>
+                      <th>1</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00021607</th>
+                      <th>12</th>
+                      <th>4.8922896</th>
+                      <th>Y46H3C.7</th>
+                      <th>858</th>
+                      <th>2</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00021316</th>
+                      <th>12</th>
+                      <th>3.2058335</th>
+                      <th>Y32H12A.8</th>
+                      <th>2922</th>
+                      <th>3</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00020496</th>
+                      <th>12</th>
+                      <th>2.9547347</th>
+                      <th>spat-3</th>
+                      <th>1621</th>
+                      <th>4</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00018193</th>
+                      <th>12</th>
+                      <th>2.6063870</th>
+                      <th>F39C12.1</th>
+                      <th>2186</th>
+                      <th>5</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00016868</th>
+                      <th>12</th>
+                      <th>2.0602232</th>
+                      <th>C52B9.8</th>
+                      <th>777</th>
+                      <th>6</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00010351</th>
+                      <th>12</th>
+                      <th>1.8069996</th>
+                      <th>cbd-1</th>
+                      <th>6017</th>
+                      <th>7</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00021186</th>
+                      <th>12</th>
+                      <th>1.2428099</th>
+                      <th>Y9D1A.1</th>
+                      <th>684</th>
+                      <th>8</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00004053</th>
+                      <th>12</th>
+                      <th>0.9801465</th>
+                      <th>tank-1</th>
+                      <th>1656</th>
+                      <th>9</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00004106</th>
+                      <th>12</th>
+                      <th>0.9447195</th>
+                      <th>pqn-15</th>
+                      <th>590</th>
+                      <th>10</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00000998</th>
+                      <th>12</th>
+                      <th>0.9366386</th>
+                      <th>dig-1</th>
+                      <th>1087</th>
+                      <th>11</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00004736</th>
+                      <th>12</th>
+                      <th>0.9074280</th>
+                      <th>sca-1</th>
+                      <th>3021</th>
+                      <th>12</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00004855</th>
+                      <th>12</th>
+                      <th>0.8682936</th>
+                      <th>sma-1</th>
+                      <th>2097</th>
+                      <th>13</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00012326</th>
+                      <th>12</th>
+                      <th>0.8383727</th>
+                      <th>W07E11.1</th>
+                      <th>1595</th>
+                      <th>14</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00016638</th>
+                      <th>12</th>
+                      <th>0.7838739</th>
+                      <th>perm-4</th>
+                      <th>827</th>
+                      <th>15</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00003410</th>
+                      <th>12</th>
+                      <th>0.7719353</th>
+                      <th>mrp-4</th>
+                      <th>1458</th>
+                      <th>16</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00000465</th>
+                      <th>12</th>
+                      <th>0.7515107</th>
+                      <th>cpg-1</th>
+                      <th>5671</th>
+                      <th>17</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00004148</th>
+                      <th>12</th>
+                      <th>0.7468497</th>
+                      <th>pqn-65</th>
+                      <th>1076</th>
+                      <th>18</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00004984</th>
+                      <th>12</th>
+                      <th>0.6732476</th>
+                      <th>spn-4</th>
+                      <th>2314</th>
+                      <th>19</th>
+                    </tr>
+                    <tr>
+                      <th>WBGene00016534</th>
+                      <th>12</th>
+                      <th>0.6377926</th>
+                      <th>C39D10.7</th>
+                      <th>698</th>
+                      <th>20</th>
+                    </tr>
+              </table>
+
+<br>
+
+{% highlight R %}
+plot.expr = function(cds, gene, thresh=1) {
+  gene.id = as.character(fData(cds)[fData(cds)$symbol == gene, "gene"])
+  pData(cds)$tmp = exprs(cds)[gene.id,] >= thresh
+  plot = ggplot(pData(cds), aes(x = tsne_1, y = tsne_2, color = tmp)) +
+    geom_point(size = 0.2) +
+    scale_color_manual(values = c("grey70", "firebrick3")) +
+    guides(color = F) +
+    monocle:::monocle_theme_opts()
+  pData(cds)$tmp = NULL
+  return(plot)
+}
+{% endhighlight %}
+
+{% highlight R %}
+plot.expr(cds, "glp-1")
+{% endhighlight %}
+
+              <div class= "text-center">
+                <img src= "{{site.baseurl}}/images/gonad-7.png" width = 600>
+              </div>
+
+{% highlight R %}
+pData(cds)$cell.type = NA
+{% endhighlight %}
+
+{% highlight R %}
+# glh-1, pgl-1, glp-1
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster %in% c(8, 11, 14, 15),
+    "Immature germline", pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# ceh-39, meg-1, meg-3
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster == 12, "Oocytes",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# ssq-2, ssq-4, fer-1
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster %in% c(6, 10), "Sperm",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# nmy-1, rhgf-1, no emb-9
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster == 4, "Spermatheca",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# nmy-1, tbh-1, emb-9
+  pData(cds)$cell.type = ifelse(pData(cds)$Cluster == 7, "Gonad sheath cells",
+      pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# myo-3, ttn-1, unc-54, unc-22, unc-89
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster %in% c(5, 16), "Body wall muscle",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# myo-1, myo-2
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster == 3, "Pharyngeal muscle",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# phat-4, phat-3, phat-6
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster == 9, "Pharyngeal gland",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# cup-4, let-381, mig-6
+pData(cds)$cell.type = ifelse(pData(cds)$Cluster == 13, "Coelomocytes",
+    pData(cds)$cell.type)
+{% endhighlight %}
+
+{% highlight R %}
+# Cluster 3 looks to be a mix of hypodermis and glia
+# Not sure what Cluster 1 is. It expresses several nematode specific peptide genes.
+{% endhighlight %}
+
+{% highlight R %}
+ggplot(pData(cds), aes(x = tsne_1, y = tsne_2, color = cell.type)) +
+  geom_point(size = 0.2) +
+  monocle:::monocle_theme_opts()
+{% endhighlight %}
+
+<div class= "text-center">
+  <img src= "{{site.baseurl}}/images/gonad-8.png" width = 600>
+</div>
+
+{% highlight R %}
+rm(list = c("mm.to.mat", "original.cds", "plate.1.cells", "plate.2.cells",
+    "gene.symbols"))
+{% endhighlight %}
+
+{% highlight R %}
+save.image("RData/YA.cell.type.id.RData")
+{% endhighlight %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+        </div>
+    </div>
+
+  {% include footer.html %}
+
+  </body>
+
+  </html>

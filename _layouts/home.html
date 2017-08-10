@@ -17,36 +17,7 @@
     </div>
   </div>
 
-
-
-  <div class = "center-text">
-    <h2 class = "text-center"> Overview </h2>
-    <div class = "col=sm-12" style = "margin-left:3em; margin-right:3em">
-    <hr class="featurette-divider" style = "margin-left:1em; margin-right:1em">
-
-  <p style="margin-left:5em;margin-right:5em;text-indent: 2.0em;"> <i>C. elegans</i> is the only animal for which the entire cellular lineage is known.
-    In <a href = "http://www.biorxiv.org/content/early/2017/02/02/104844">Cao et al. (Science, 2017)</a> we profiled the transcriptome of whole <i>C. elegans</i> animals at the L2 stage at single cell resolution using a combinatorial indexing approach (sci-RNA-seq).
-    This essentially provides a "snapshot" of the dynamic molecular state of the worm in development. </p>
-
-    <p style="margin-left:5em;margin-right:5em;text-indent: 2.0em;">Our analysis in Cao et al. associated cells in the sci-RNA-seq data with 27 high-level cell types as well as several neuronal subtypes, and integration with transcription factor (TF) ChIP-seq data revealed potential regulators of cell type specific gene expression.
-    We plan to conduct further sci-RNA-seq experiments aimed at achieving better coverage of rare cell types (especially neurons) and at profiling different stages of development. We plan to upload the data of those experiments here.
-    We hope that these data will be useful both for studying gene regulation and more generally for developing and benchmarking methods for single cell analysis.
-    The analysis of these data will be limited however by our ability to conclusively associate sequenced cells with specific anatomical cell types in the worm. </p>
-
-    <p style="margin-left:5em;margin-right:5em;text-indent: 2.0em;" class = "indented">We aim to enlist the help of <i>C. elegans</i> community both in improving the annotation of the original Cao et al. data and in annotating data from future experiments.
-    <b>To facilitate this, we plan on publishing data for additional <i>C. elegans</i> sci-RNA-seq experiments online, prior to publication.</b>
-    This website contains documentation on how to access and start performing your own analysis on the Cao et al. data.
-    It also contains instructions on how to access a new dataset (sequenced in July 2017) which profiles gonad cells from young adult <i>C. elegans</i>.
-    We have set up a Google Group for discussing the data [INSERT LINK].
-    We have performed t-SNE dimensionality reduction and density peak clustering for both datasets.
-    If you think you've found evidence associating a cell type with a specific t-SNE cluster, please make a post there!
-    We also welcome general comments or demonstrations of alternative technical approaches.
-    We do not have specific plans in mind for publication of the next set of experiments.
-    If you are interested in collaboration, please contact Bob Waterston, Cole Trapnell, or Jay Shendure.
-    We could especially use help with experimental validation of the expression patterns of marker genes. </p>
-
-  </div>
-</div>
+  <hr class="featurette-divider">
 
   <br>
 
@@ -56,32 +27,140 @@
 
       <div class="col-md-4">
         <div class="text-center">
-          <img src="images/tsne-1.png" width=300></img>
-          <h2>Explore gene expression patterns</h2>
+          <img src="images/tsne-1.png" width=350></img>
           <br>
           <br>
           <br>
+          <h2>Gene Expression</h2>
           <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-2-expression-pattern-of-a-gene-of-interest" role="button">View details &raquo;</a></p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="text-center">
-          <img src="images/tsne-2.png" width=270></img>
-          <h2>Find Differentially Expressed Genes Between Subsets of Cells</h2>
+          <img src="images/tsne-2.png" width=350 height = 285></img>
           <br>
+          <br>
+          <h2>Subsets of Cells</h2>
           <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-3-differential-expression-of-cells-subset" role="button">View details &raquo;</a></p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="text-center">
-          <img src="images/front_page_plot_3.png" height= 250 width= 250></img>
-          <h2>Perform Your Own t-SNE Clustering On Cell Subsets of Interest</h2>
+          <img src="images/front_page_plot_3.png" width = 300 height = 310</img>
+          <h2>t-SNE Clustering</h2>
           <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-4-re-clustering-data-subsets-using-t-sne" role="button">View details &raquo;</a></p>
         </div>
       </div>
     </div>
 
+      <hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading">Overview</h2>
+          <p class="lead"><i>C. elegans</i> is the only animal for which the entire cellular lineage is known.
+            In <a href = "http://www.biorxiv.org/content/early/2017/02/02/104844">Cao et al. (Science, 2017)</a> we profiled the transcriptome of whole <i>C. elegans</i> animals at the L2 stage at single cell resolution using a combinatorial indexing approach (sci-RNA-seq).
+            This essentially provides a "snapshot" of the dynamic molecular state of the worm in development.</p>
+
+          <!-- <p>Most single-cell RNA-Seq protocols capture only a small percentage of the mRNA in each cell, which leads to so-called "drop outs", where mRNAs that are probably present just aren't detected. This makes it hard to determine how many cells of each type there are in your experiment. Monocle has a machine-learning based algorithm for classifying cells by type even in the face of missing data, and even when your cells have been treated in different ways or collected from varying conditions. You can use it to track population dynamics, measure responses to perturbation, and even discover new cell types.</p> -->
+
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/cell_type_impute.png" width=300 height=300 alt="Generic placeholder image">
+        </div>
+      </div>
+
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"><a href = "{{site.url}}/docs/#differential-expression-analysis">Our Analysis</a></h2>
+          <p class="lead">Our analysis in Cao et al. associated cells in the sci-RNA-seq data with 27 high-level cell types as well as several neuronal subtypes, and integration with transcription factor (TF) ChIP-seq data revealed potential regulators of cell type specific gene expression. </p>
+          <!-- <p>Monocle allows you to compare groups of cells to identify genes that differ between them, even after controlling for other variables in the experiment. For example, the plot above shows genes that differ between two conditions, but only one of them, LAG3, is **also** different between cell types, even after subtracting the other effects. You can use Monocle's differential expression system to zero in on the genes that are most relevant in your experiment.</p> -->
+
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/example_T_cell_differential_genes.png" width=300 height=300 alt="Generic placeholder image">
+        </div>
+      </div>
+
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading"><a href = "{{site.url}}/docs/#clustering-cells">Further Experiments</a></h2>
+          <p class="lead">We plan to conduct further sci-RNA-seq experiments aimed at achieving better coverage of rare cell types (especially neurons) and at profiling different stages of development. We plan to upload the data of those experiments here. We hope that these data will be useful both for studying gene regulation and more generally for developing and benchmarking methods for single cell analysis. The analysis of these data will be limited however by our ability to conclusively associate sequenced cells with specific anatomical cell types in the worm.
+
+            <!-- <p>Monocle leverages its differential analysis procedures so you can be assured of the statistical robustness of your marker panel, leading to reliable downstream analysis.</p>
+            <p> In the plot above, Monocle has identified the top 20 most cell-type specific genes for some of the major lymphocytes in peripheral blood.</p> -->
+
+          </div>
+          <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/all_cells_marker_heatmap.png" height=300 width=300 alt="Generic placeholder image">
+          </div>
+        </div>
+
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading"><a href = "{{site.url}}/docs/#constructing-single-cell-trajectories">Community Collaboration</a></h2>
+            <p class="lead">We aim to enlist the help of C. elegans community both in improving the annotation of the original Cao et al. data and in annotating data from future experiments. To facilitate this, we plan on publishing data for additional C. elegans sci-RNA-seq experiments online, prior to publication. This website contains documentation on how to access and start performing your own analysis on the Cao et al. data. It also contains instructions on how to access a new dataset (sequenced in July 2017) which profiles gonad cells from young adult C. elegans.</p>
+
+          </div>
+          <!-- <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_mst.png" width=300 height=300 alt="Generic placeholder image">
+          </div> -->
+
+          <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_pseudotime_changes.png" width=300 height=300 alt="Generic placeholder image">
+          </div>
+
+        </div>
+
+        <hr class="featurette-divider">
+
+                  <div class="row featurette">
+                    <div class="col-md-7 col-md-push-5">
+                      <h2 class="featurette-heading"><a href = "{{site.url}}/docs/#analyzing-branches-in-single-cell-trajectories">Google Group</a></h2>
+                      <p class="lead">We have set up a Google Group for discussing the data [INSERT LINK].
+                        We have performed t-SNE dimensionality reduction and density peak clustering for both datasets.
+                        If you think you've found evidence associating a cell type with a specific t-SNE cluster, please make a post there!
+                        We also welcome general comments or demonstrations of alternative technical approaches.</p>
+
+                        </div>
+                        <div class="col-md-5 col-md-pull-7">
+                          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/branch_trajectory.png" height=300 width=300 alt="Generic placeholder image">
+                        </div>
+
+                      </div>
+
+                      <hr class="featurette-divider">
+
+
+
+                      <div class="row featurette">
+                        <div class="col-md-7">
+                          <h2 class="featurette-heading"><a href = "{{site.url}}/docs/#constructing-single-cell-trajectories">Final Notes</a></h2>
+                          <p class="lead"> We do not have specific plans in mind for publication of the next set of experiments.
+                            If you are interested in collaboration, please contact Bob Waterston, Cole Trapnell, or Jay Shendure.
+                            We could especially use help with experimental validation of the expression patterns of marker genes. </p>
+
+                        </div>
+                        <!-- <div class="col-md-5">
+                          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_mst.png" width=300 height=300 alt="Generic placeholder image">
+                        </div> -->
+
+                        <div class="col-md-5">
+                          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_pseudotime_changes.png" width=300 height=300 alt="Generic placeholder image">
+                        </div>
+
+                      </div>
+
+                        <hr class="featurette-divider">
 
                   <!--
                   <ul class="post-list">
