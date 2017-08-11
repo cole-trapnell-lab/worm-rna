@@ -2590,7 +2590,7 @@ cholinergic.cluster.markers =
 
 
 <p>In the previous examples for using <em>plot.expr</em>, the function used pre-computed expression tables for <em>cds</em> and <em>cds.neurons</em> to show which cell types / neuron types were expressing a given gene.
-  The following code will set up <em>plot.expr</em> so it can show which density peak clusters from this re-clustering analysis express a given gene.</p>
+  The following code will set up <em>plot.expr</em> so it can show which density peak clusters from this re-clustering analysis express a given gene. You can also use <em>show.expr.info</em> with your own clustering.</p>
 
 <br>
 
@@ -2601,10 +2601,9 @@ cholinergic.expr.info = get.expr.info.by.facet(cds.cholinergic,
 
 <br>
 
-  {% highlight R %}
-plot.expr(cds.cholinergic, "lgc-39", expr.info =
-  cholinergic.expr.info)
-  {% endhighlight %}
+{% highlight R %}
+plot.expr(cds.cholinergic, "lgc-39", expr.info = cholinergic.expr.info)
+{% endhighlight %}
 
   <div class= "text-center">
     <img src= "{{site.baseurl}}/images/Cao_2017_9.png" width = 600>
@@ -2612,10 +2611,102 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
 
 <br>
 
-  {% highlight R %}
-    plot.expr(cds.cholinergic, "vglu-2", expr.info =
-      cholinergic.expr.info)
-  {% endhighlight %}
+{% highlight R %}
+show.expr.info("lgc-39", cholinergic.expr.info) %>% head(10)
+{% endhighlight %}
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>facet</th>
+      <th>tpm</tpm>
+      <th>prop.cells.expr</th>
+      <th>n.umi</th>
+      <th>total.n.umi.for.facet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21</th>
+      <th>4677.68319</th>
+      <th>0.618644068</th>
+      <th>305</th>
+      <th>63153</th>
+    </tr>
+    <tr>
+      <th>18</th>
+      <th>244.90291</th>
+      <th>0.060606061</th>
+      <th>4</th>
+      <th>14652</th>
+    </tr>
+    <tr>
+      <th>19</th>
+      <th>232.84907</th>
+      <th>0.052884615</th>
+      <th>14</th>
+      <th>50800</th>
+    </tr>
+    <tr>
+      <th>8</th>
+      <th>217.45530</th>
+      <th>0.038461538</th>
+      <th>18</th>
+      <th>80071</th>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>155.65487</th>
+      <th>0.027100271</th>
+      <th>24</th>
+      <th>174660</th>
+    </tr>
+    <tr>
+      <th>22</th>
+      <th>129.10174</th>
+      <th>0.024615385</th>
+      <th>10</th>
+      <th>117663</th>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>79.17593</th>
+      <th>0.028169014</th>
+      <th>2</th>
+      <th>19954</th>
+    </tr>
+    <tr>
+      <th>6</th>
+      <th>60.42661</th>
+      <th>0.014925373</th>
+      <th>1</th>
+      <th>17215</th>
+    </tr>
+    <tr>
+      <th>9</th>
+      <th>56.34438</th>
+      <th>0.029411765</th>
+      <th>1</th>
+      <th>12093</th>
+    </tr>
+    <tr>
+      <th>10</th>
+      <th>30.47108</th>
+      <th>0.008196721</th>
+      <th>1</th>
+      <th>26202</th>
+    </tr>
+  </tbody>
+
+</table>
+
+<br>
+
+{% highlight R %}
+plot.expr(cds.cholinergic, "vglu-2", expr.info = cholinergic.expr.info)
+{% endhighlight %}
+
+<br>
 
   <div class= "text-center">
     <img src= "{{site.baseurl}}/images/Cao_2017_10.png" width = 600>
@@ -2623,14 +2714,195 @@ plot.expr(cds.cholinergic, "lgc-39", expr.info =
 
 <br>
 
+{% highlight R %}
+  show.expr.info("vglu-2", cholinergic.expr.info) %>% head(10)
+{% endhighlight %}
+
+<br>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>facet</th>
+      <th>tpm</th>
+      <th>prop.cells.expr</th>
+      <th>n.umi</th>
+      <th>total.n.umi.for.facet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <th>2356.21566</th>
+      <th>0.44444444</th>
+      <th>30</th>
+      <th>11540</th>
+    </tr>
+    <tr>
+      <th>14</th>
+      <th>37.52486</th>
+      <th>0.01587302</th>
+      <th>1</th>
+      <th>23493</th>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>19954</th>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>19911</th>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>174660</th>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>51233</th>
+    </tr>
+    <tr>
+      <th>6</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>17215</th>
+    </tr>
+    <tr>
+      <th>7</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>17691</th>
+    </tr>
+    <tr>
+      <th>8</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>80071</th>
+    </tr>
+    <tr>
+      <th>9</th>
+      <th>0.00000</th>
+      <th>0.00000000</th>
+      <th>0</th>
+      <th>12093</th>
+    </tr>
+  </tbody>
+</table>
+
   {% highlight R %}
-    plot.expr(cds.cholinergic, "unc-17", expr.info =
-      cholinergic.expr.info)
+    plot.expr(cds.cholinergic, "unc-17", expr.info = cholinergic.expr.info)
   {% endhighlight %}
 
   <div class= "text-center">
     <img src= "{{site.baseurl}}/images/Cao_2017_11.png" width = 600>
   </div>
+
+<br>
+
+{% highlight R %}
+show.expr.info("unc-17", cholinergic.expr.info) %>% head(10)
+{% endhighlight %}
+
+<br>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>facet</th>
+      <th>tpm</th>
+      <th>prop.cells.expr</th>
+      <th>n.umi</th>
+      <th>total.n.umi.for.facet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <th>3200.3642</th>
+      <th>0.3823529</th>
+      <th>44</th>
+      <th>12093</th>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>2944.3520</th>
+      <th>0.2888889</th>
+      <th>27</th>
+      <th>11540</th>
+    </tr>
+    <tr>
+      <th>13</th>
+      <th>2128.1049</th>
+      <th>0.2500000</th>
+      <th>29</th>
+      <th>13140</th>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>2087.7739</th>
+      <th>0.2731959</th>
+      <th>119</th>
+      <th>51233</th>
+    </tr>
+    <tr>
+      <th>15</th>
+      <th>1992.1189</th>
+      <th>0.2941176</th>
+      <th>62</th>
+      <th>31426</th>
+    </tr>
+    <tr>
+      <th>6</th>
+      <th>1721.6386</th>
+      <th>0.2686567</th>
+      <th>34</th>
+      <th>17215</th>
+    </tr>
+    <tr>
+      <th>8</th>
+      <th>1527.0847</th>
+      <th>0.1826923</th>
+      <th>126</th>
+      <th>80071</th>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>1344.6852</th>
+      <th>0.1585366</th>
+      <th>235</th>
+      <th>174660</th>
+    </tr>
+    <tr>
+      <th>12</th>
+      <th>1114.1395</th>
+      <th>0.1718213</th>
+      <th>123</th>
+      <th>97104</th>
+    </tr>
+    <tr>
+      <th>16</th>
+      <th>886.1635</th>
+      <th>0.1923077</th>
+      <th>16</th>
+      <th>19103</th>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 
