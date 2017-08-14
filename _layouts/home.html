@@ -7,172 +7,135 @@
   {% include header.html %}
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron" style="background-image: url(images/worm-1-edit.png); background-size: 100%;";>
-    <div class="container">
-      <div class="text-center">
-          <h1>Cell Atlas of Worm</h1>
-          <p>The <i>C. elegans</i> transcriptome at single cell resolution</p>
-        <p><a class="btn btn-warning btn-lg" href="{{ site.baseurl }}/docs/" role="button">Get started&raquo;</a></p>
+  <div class="container fifty">
+    <div class="fixOverlayDiv">
+      <img src="images/worm-drawing-2.png" alt="..." class=" align-center  img-responsive">
+      <div class="OverlayText">
+        <h1>Cell Atlas of Worm</h1>
+        <p class="lead">The <i>C. elegans</i> transcriptome at single cell resolution</p>
       </div>
     </div>
+    <div class="col-md-12">
+      <br>
+
+    <div class="text-center">
+    <p class="lead">
+      In <a href = "http://www.biorxiv.org/content/early/2017/02/02/104844">Cao et al. (Science, 2017)</a> we reported the transcriptome profiles of every cell in <i>C. elegans</i> larvae at single cell resolution using a combinatorial indexing approach (sci-RNA-seq).
+    </p>
+    <p class="lead">Here, you can download and analyze the data for yourself.</p>
+    </div>
+    </div>
   </div>
-
-  <hr class="featurette-divider">
-
   <br>
 
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-
-      <div class="col-md-4">
+   <div class="container fifty" style="max-width: 950px">
+      <div class="col-md-12">
         <div class="text-center">
-          <img src="images/gene-expression-image.png" width=340 height = 287></img>
+          <h2>See how each gene is regulated in every cell type in the worm</h2>
+          <img src="images/gene-expression-image.png" width=600></img>
           <br>
           <br>
-          <h2>Gene Expression</h2>
+          <p>Our analysis in Cao et al. associated cells in the sci-RNA-seq data with 27 high-level cell types as well as several neuronal subtypes. You can use the code we provide here to find out how your favorite genes are expressed in each of these cell types.
           <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-2-expression-pattern-of-a-gene-of-interest" role="button">View details &raquo;</a></p>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-4">
+    <div class="container fifty" style="max-width: 950px">
+      <div class="col-md-12">
         <div class="text-center">
-          <img src="images/tsne-2.png" width=350 height = 285></img>
+          <h2>Compare cell types through differential expression</h2>
+          <img src="images/tsne-1.png" width=500></img>
           <br>
           <br>
-          <h2>Differential Expression</h2>
-          <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-3-differential-expression-of-cells-subset" role="button">View details &raquo;</a></p>
+            <p>So far, we have confidently classified most of the cells in the Cao et al dataset by major type, and you can extract complete gene expression profiles for each and compare them to one another.
+            <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-3-differential-expression-of-cells-subset" role="button">View details &raquo;</a></p>
         </div>
       </div>
-      <div class="col-md-4">
+    </div>
+
+    <div class="container fifty" style="max-width: 950px">
+      <div class="col-md-12">
         <div class="text-center">
-          <img src="images/front_page_plot_3.png" width = 300 height = 310</img>
-          <h2>Re-clustering</h2>
+          <h2>Characterize new cell subtypes</h2>
+          <img src="images/tsne-2.png" width=500</img>
+          <br>
+          <br>
+          <p>We also found many clusters of cells that we haven't yet been able to subtype or assign to a precise spot in the worm cell lineage. For example, there are numerous neuron subclusters we haven't yet characterized as one subtype or another. We need your help! If you'd like to contribute to the annotation of the worm transcriptome, please drop us a line.
           <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-4-re-clustering-data-subsets-using-t-sne" role="button">View details &raquo;</a></p>
         </div>
       </div>
     </div>
 
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Overview</h2>
-          <p class="lead"><i>C. elegans</i> is the only animal for which the entire cellular lineage is known.
-            In <a href = "http://www.biorxiv.org/content/early/2017/02/02/104844">Cao et al. (Science, 2017)</a> we profiled the transcriptome of whole <i>C. elegans</i> animals at the L2 stage at single cell resolution using a combinatorial indexing approach (sci-RNA-seq).
-            This essentially provides a "snapshot" of the dynamic molecular state of the worm in development.</p>
-
-          <!-- <p>Most single-cell RNA-Seq protocols capture only a small percentage of the mRNA in each cell, which leads to so-called "drop outs", where mRNAs that are probably present just aren't detected. This makes it hard to determine how many cells of each type there are in your experiment. Monocle has a machine-learning based algorithm for classifying cells by type even in the face of missing data, and even when your cells have been treated in different ways or collected from varying conditions. You can use it to track population dynamics, measure responses to perturbation, and even discover new cell types.</p> -->
-
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="images/tsne-1.png" width=300 height=300></img>
-        </div>
-      </div>
 
 
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Our Analysis</h2>
-          <p class="lead">Our analysis in Cao et al. associated cells in the sci-RNA-seq data with 27 high-level cell types as well as several neuronal subtypes. Integration with transcription factor (TF) ChIP-seq data revealed potential regulators of cell type specific gene expression.</p>
-          <!-- <p>Monocle allows you to compare groups of cells to identify genes that differ between them, even after controlling for other variables in the experiment. For example, the plot above shows genes that differ between two conditions, but only one of them, LAG3, is **also** different between cell types, even after subtracting the other effects. You can use Monocle's differential expression system to zero in on the genes that are most relevant in your experiment.</p> -->
-
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="images/tsne-2.png" width=300 height=300 alt="Generic placeholder image">
-        </div>
-      </div>
+<!--
+  <div class="row fullscreen">
+    <div class="col-md-7 col-md-push-5">
+      <h2 class="featurette-heading">Further Experiments</h2>
+      <p class="lead">We plan to conduct further sci-RNA-seq experiments aimed at achieving better coverage of rare cell types (especially neurons) and at profiling different stages of development. The data from these experiments will be hosted here. The analysis of these data will be limited however by our ability to conclusively associate sequenced cells with specific anatomical cell types in the worm.</p>
 
 
-      <hr class="featurette-divider">
+    </div>
+    <div class="col-md-5 col-md-pull-7">
+      <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/all_cells_marker_heatmap.png" height=300 width=300 alt="Generic placeholder image">
+    </div>
+  </div>
 
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Further Experiments</h2>
-          <p class="lead">We plan to conduct further sci-RNA-seq experiments aimed at achieving better coverage of rare cell types (especially neurons) and at profiling different stages of development. The data from these experiments will be hosted here. The analysis of these data will be limited however by our ability to conclusively associate sequenced cells with specific anatomical cell types in the worm.</p>
+  <div class="row fullscreen">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Community Collaboration</h2>
+      <p class="lead">We aim to enlist the help of C. elegans community in both improving the annotation of the original Cao et al. data and in annotating data from future experiments. To facilitate this, we will publish data for additional C. elegans sci-RNA-seq experiments online, prior to publication. This website contains documentation on how to access and start performing your own analysis on the Cao et al. data. It also contains instructions on how to access a new dataset (sequenced in July 2017) which profiles gonad cells from young adult C. elegans.</p>
 
-            <!-- <p>Monocle leverages its differential analysis procedures so you can be assured of the statistical robustness of your marker panel, leading to reliable downstream analysis.</p>
-            <p> In the plot above, Monocle has identified the top 20 most cell-type specific genes for some of the major lymphocytes in peripheral blood.</p> -->
-
-          </div>
-          <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/all_cells_marker_heatmap.png" height=300 width=300 alt="Generic placeholder image">
-          </div>
-        </div>
+    </div>
 
 
-        <hr class="featurette-divider">
+  <div class="col-md-5">
+    <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_pseudotime_changes.png" width=300 height=300 alt="Generic placeholder image">
+  </div>
 
-        <div class="row featurette">
-          <div class="col-md-7">
-            <h2 class="featurette-heading">Community Collaboration</h2>
-            <p class="lead">We aim to enlist the help of C. elegans community in both improving the annotation of the original Cao et al. data and in annotating data from future experiments. To facilitate this, we will publish data for additional C. elegans sci-RNA-seq experiments online, prior to publication. This website contains documentation on how to access and start performing your own analysis on the Cao et al. data. It also contains instructions on how to access a new dataset (sequenced in July 2017) which profiles gonad cells from young adult C. elegans.</p>
+</div>
 
-          </div>
-          <!-- <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_mst.png" width=300 height=300 alt="Generic placeholder image">
-          </div> -->
+<div class="row fullscreen">
+  <div class="col-md-7 col-md-push-5">
+    <h2 class="featurette-heading">Google Group</h2>
+    <p class="lead">We have set up a Google Group for discussing the data [INSERT LINK]. We have performed a basic clustering analysis for both datasets. If you think you've found evidence associating a cell type with a specific cluster, please make a post there! We also welcome general comments or demonstrations of alternative technical approaches.</p>
 
-          <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_pseudotime_changes.png" width=300 height=300 alt="Generic placeholder image">
-          </div>
+  </div>
+  <div class="col-md-5 col-md-pull-7">
+    <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/branch_trajectory.png" height=300 width=300 alt="Generic placeholder image">
+  </div>
 
-        </div>
-
-        <hr class="featurette-divider">
-
-                  <div class="row featurette">
-                    <div class="col-md-7 col-md-push-5">
-                      <h2 class="featurette-heading">Google Group</h2>
-                      <p class="lead">We have set up a Google Group for discussing the data [INSERT LINK]. We have performed a basic clustering analysis for both datasets. If you think you've found evidence associating a cell type with a specific cluster, please make a post there! We also welcome general comments or demonstrations of alternative technical approaches.</p>
-
-                        </div>
-                        <div class="col-md-5 col-md-pull-7">
-                          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/branch_trajectory.png" height=300 width=300 alt="Generic placeholder image">
-                        </div>
-
-                      </div>
-
-                      <hr class="featurette-divider">
+</div>
 
 
 
-                      <div class="row featurette">
-                        <div class="col-md-7">
-                          <h2 class="featurette-heading">Contact Us</h2>
-                          <p class="lead"> If you are interested in collaborating with us further, please contact <a href = "mailto:watersto@u.washington.edu?Subject=Cell%20Atlas%20of%20Worm">Bob Waterston</a>, <a href = "mailto:coletrap@uw.edu?Subject=Cell%20Atlas%20of%20Worm">Cole Trapnell</a>, and <a href = "mailto:shendure@uw.edu?Subject=Cell%20Atlas%20of%20Worm">Jay Shendure</a>. We could especially use help with experimental validation of the expression patterns of marker genes. </p>
 
-                        </div>
-                        <!-- <div class="col-md-5">
-                          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_mst.png" width=300 height=300 alt="Generic placeholder image">
-                        </div> -->
+<div class="row fullscreen">
+  <div class="col-md-7">
+    <h2 class="featurette-heading">Contact Us</h2>
+    <p class="lead"> If you are interested in collaborating with us further, please contact <a href = "mailto:watersto@u.washington.edu?Subject=Cell%20Atlas%20of%20Worm">Bob Waterston</a>, <a href = "mailto:coletrap@uw.edu?Subject=Cell%20Atlas%20of%20Worm">Cole Trapnell</a>, and <a href = "mailto:shendure@uw.edu?Subject=Cell%20Atlas%20of%20Worm">Jay Shendure</a>. We could especially use help with experimental validation of the expression patterns of marker genes. </p>
 
-                        <div class="col-md-5">
-                          <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_pseudotime_changes.png" width=300 height=300 alt="Generic placeholder image">
-                        </div>
+  </div>
 
-                      </div>
 
-                        <hr class="featurette-divider">
+<div class="col-md-5">
+  <img class="featurette-image img-responsive center-block" src="{{site.url}}/images/neuron_pseudotime_changes.png" width=300 height=300 alt="Generic placeholder image">
+</div> -->
 
-                  <!--
-                  <ul class="post-list">
-                  {% for post in site.posts %}
-                  <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></a></article></li>
-                  {% endfor %}
-                </ul> -->
+</div>
 
-                <footer>
-                  <p>&copy; 2017</p>
-                  <small>Trapnell lab &copy; 2017</small>
-                  <small>Jumbotron image &copy; 2017 Mark Leaver. Used with permission.</small>
 
-                </footer>
-              </div> <!-- /container -->
 
-              {% include footer.html %}
+<footer>
+  <small>Shendure, Trapnell, and Waterston labs &copy; 2017</small>
+  <small>Jumbotron image derived from original &copy; 2017 Mark Leaver. Used with permission.</small>
 
-            </body>
+</footer>
+</div> <!-- /container -->
 
-            </html>
+{% include footer.html %}
+
+</body>
+
+</html>
