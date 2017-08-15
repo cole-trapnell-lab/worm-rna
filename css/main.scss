@@ -39,7 +39,7 @@ $icon-font-path: "/node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 
 .fullscreen { width:100%; height: 100vh; }
 
-.fifty{ width:100%; height: 55vh; }
+.fifty{ width:100%; height: 55vh;}
 
 
 .fixOverlayDiv{
@@ -50,6 +50,11 @@ $icon-font-path: "/node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 .OverlayText{
     top: 10%;
     left: 12%;
-    position: absolute;
+    position: relative;
     width: 100%;
+}
+
+.topWormImg{
+  width: 100%;
+  position: relative;
 }
