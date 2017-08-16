@@ -1,0 +1,20 @@
+# README for sci-RNA-seq data processing pipeline
+# Junyue Cao
+# Jay Shendure lab (Department of Genome Sciences, University of Washington)
+# 2017-08-06
+
+This folder includes bash and python scripts for processing sci-RNA-seq data:
+
+scRNA_seq_pipeline.sh: the main pipeline script for processing sci-RNA-seq fastq data. This script accepts a input folders of gzipped fastq files, and reference files for genome mapping and gene counting. The output is a sparse gene count matrix and other summary statistics.
+
+barcode_1836_RT.txt: RT barcodes used for sci-RNA-seq. This may be different from experiment to experiment.
+
+UMI_barcode_attach_gzipped.py: this script takes in a input folder of fastq files, a sample ID file, a output folder, a RT barocde file. Then it extracts the UMI and RT barcode from each read1 and attach them to the read name of read2.
+
+rm_dup_barcode_UMI.py: this script takes a a input sorted sam file, a output sam file, and a mismatch rate, then it removes duplicates based on the barcode + UMI (edit distance <= mismatch rate), chromatin number and start site for each sam file.
+
+sam_split.py: this script accept a sam file and then split out single cells based on RT barcode.
+
+sciRNAseq_count.py: this script accept a folder of single cell sam files, and a reference gtf file, then it generates a sparse gene count matrix for each single cell.
+
+The scripts is tested and ran on the server of Shendure lab (UW). Slight modifications may be needed for other environments. 
