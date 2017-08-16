@@ -7,16 +7,34 @@
   {% include header.html %}
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="container fifty">
+
+
+
+  <div class="container fifty" style="max-width: 950px">
     <div class="fixOverlayDiv">
+<<<<<<< HEAD
       <img src="images/worm-drawing-2.png" alt="..." class="align-center  img-responsive">
       <div class="OverlayText">
         <h1>A Cell Atlas of Worm</h1>
         <p class="lead">The <i>C. elegans</i> transcriptome at single cell resolution</p>
       </div>
+=======
+
+        <h1 align = "left">Cell Atlas of Worm</h1>
+        <p class="lead" align = "left">The <i>C. elegans</i> transcriptome at single cell resolution</p>
+
+
+>>>>>>> e4402c4d33792057271ab2a0eb80463cbefbaefb
     </div>
+
+
+
     <div class="col-md-12">
+
+      <img src="images/worm-drawing-3.png" alt="..." class="img-responsive" style="width:2000px">
+
     <br>
+
 
     <div class="text-center">
     <p class="lead">
@@ -26,17 +44,16 @@
     </div>
     </div>
   </div>
-  <br>
 
-   <div class="container fifty" style="max-width: 950px">
+  <div class="container fifty" style="max-width: 950px">
       <div class="col-md-12">
         <div class="text-center">
           <h2>See how each gene is regulated in every cell type in the worm</h2>
           <img src="images/gene-expression-image.png" style="width:75%"></img>
-          <br>
-          <br>
+
           <p>Our analysis in Cao et al. associated cells in the sci-RNA-seq data with 27 high-level cell types as well as several neuronal subtypes. You can use the code we provide here to find out how your favorite genes are expressed in each of these cell types.
           <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-2-expression-pattern-of-a-gene-of-interest" role="button">View details &raquo;</a></p>
+          <br>
         </div>
       </div>
     </div>
@@ -44,10 +61,10 @@
     <div class="container fifty" style="max-width: 950px">
       <div class="col-md-12">
         <div class="text-center">
+
           <h2>Compare cell types through differential expression</h2>
           <img src="images/tsne-1.png" style="width:50%"></img>
-          <br>
-          <br>
+
             <p>So far, we have confidently classified most of the cells in the Cao et al dataset by major type, and you can extract complete gene expression profiles for each and compare them to one another.
             <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-3-differential-expression-of-cells-subset" role="button">View details &raquo;</a></p>
         </div>
