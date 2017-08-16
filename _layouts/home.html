@@ -13,9 +13,8 @@
   <div class="container fifty" style="max-width: 950px">
     <div class="fixOverlayDiv">
 
-        <h1 align = "left">Cell Atlas of Worm</h1>
+        <h1 align = "left">A Cell Atlas of Worm</h1>
         <p class="lead" align = "left">The <i>C. elegans</i> transcriptome at single cell resolution</p>
-
 
     </div>
 
@@ -30,17 +29,25 @@
 
     <div class="text-center">
     <p class="lead">
-      In <a href = "http://www.biorxiv.org/content/early/2017/02/02/104844">Cao et al. (Science, 2017)</a> we reported the transcriptome profiles of every cell in <i>C. elegans</i> larvae at single cell resolution using a combinatorial indexing approach (sci-RNA-seq).
+      In <a href = "http://www.biorxiv.org/content/early/2017/02/02/104844">Cao et al. (Science, 2017)</a> we reported single cell RNA-seq of <i>C. elegans</i> larvae at ~50x 'shotgun cellular coverage' using a combinatorial indexing approach (sci-RNA-seq).
     </p>
     <p class="lead">Here, you can download and analyze the data for yourself.</p>
+    <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-1-expression-pattern-of-a-gene-of-interest" role="button">Get started &raquo;</a></p>
     </div>
+
+    <br> <br>
+    <div class="text-center">
+    <p class="lead">We have built this site to make our data as accessible as possible so that others can analyze it for themselves. The <a href="{{ site.baseurl }}/docs/">documentation</a> describes how to download the data and load up the software required to work with it. We also describe how to perform some common tasks such as comparing cell types to find genes that distinguish them. All our analysis code is hosted in a <a href="https://github.com/cole-trapnell-lab/single-cell-worm">GitHub repository</a>, so if you find a problem with it you can submit an issue or contribute a patch.</p>
+
+    </div>
+
     </div>
   </div>
 
 
   <div style= "padding-left:1px;" style="max-width: 950px">
     <div class= "col-md-12 text-center">
-    <h2>See how each gene is regulated in every cell type in the worm</h2>
+    <h2>Explore cell-type specific gene regulation</h2>
     </div>
   </div>
 
@@ -64,7 +71,7 @@
           <img src="images/tsne-1.png" style="width:50%"></img>
 
             <p>So far, we have confidently classified most of the cells in the Cao et al dataset by major type, and you can extract complete gene expression profiles for each and compare them to one another.
-            <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-3-differential-expression-of-cells-subset" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-3-differential-expression-between-cell-subsets" role="button">View details &raquo;</a></p>
         </div>
       </div>
     </div>
@@ -77,7 +84,7 @@
           <br>
           <br>
           <p>Our preliminary analysis shows that the worm contains cells, such as the ASE neurons, that are transcriptionally unique. That is, each animal contains a single cell that expresses a unique pattern of gene that no other cell shares.  While we know the broad type of each cell, identifying the transcriptome signature of the many subtypes in the worm will be an ongoing project. You can dive into such analyses by reclustering the data.
-          <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-4-re-clustering-data-subsets-using-t-sne" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-4-re-clustering-cell-subsets-using-t-sne" role="button">View details &raquo;</a></p>
         </div>
       </div>
     </div>
@@ -89,8 +96,8 @@
           <img src="images/tsne-2.png" style="width:50%"</img>
           <br>
           <br>
-          <p>We also found many clusters of cells that we haven't yet been able to subtype or assign to a precise spot in the worm cell lineage. For example, there are numerous neuron subclusters we haven't yet characterized as one subtype or another. We need your help! If you'd like to contribute to the annotation of the worm transcriptome, please <a href = "mailto:watersto@u.washington.edu,coletrap@uw.edu,shendure@uw.edu?Subject=Cell%20Atlas%20of%20Worm">drop us a line</a>.
-          <p><a class="btn btn-default" href="{{ site.baseurl }}/docs/#use-case-4-re-clustering-data-subsets-using-t-sne" role="button">View details &raquo;</a></p>
+          <p>We also found many clusters of cells that we haven't yet been able to subtype or assign to a precise spot in the worm cell lineage. For example, there are numerous neuron subclusters we haven't yet characterized as one subtype or another. We need your help! If you'd like to contribute to the annotation of the worm transcriptome, <a href="https://groups.google.com/d/forum/worm-cell-atlas">join this google group</a>.
+          <p><a class="btn btn-default" href="https://groups.google.com/d/forum/worm-cell-atlas" role="button">Join the group &raquo;</a></p>
         </div>
       </div>
     </div>
