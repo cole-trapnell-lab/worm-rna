@@ -24,23 +24,9 @@ tags: [worm, manual, vignette, atlas]
         <!-- main content area -->
         <div class= "col-sm-8">
 
-
-<h2>Abstract</h2>
-<p> Conventional methods for profiling the molecular content of biological samples fail to resolve heterogeneity that is present at the level of single cells.
-  In the past few years, single cell RNA sequencing has emerged as a powerful strategy for overcoming this challenge.
-  However, its adoption has been limited by a paucity of methods that are at once simple to implement and cost effective to scale massively.
-  Here, we describe a combinatorial indexing strategy to profile the transcriptomes of large numbers of single cells or single nuclei without requiring the physical isolation of each cell (Single cell Combinatorial Indexing RNA-seq or sci-RNA-seq).
-  We show that sci-RNA-seq can be used to efficiently profile the transcriptomes of tens-of-thousands of single cells per experiment, and demonstrate that we can stratify cell types from these data.
-  Key advantages of sci-RNA-seq over contemporary alternatives such as droplet-based single cell RNA-seq include sublinear cost scaling, a reliance on widely available reagents and equipment, the ability to concurrently process many samples within a single workflow, compatibility with methanol fixation of cells, cell capture based on DNA content rather than cell size, and the flexibility to profile either cells or nuclei.
-  As a demonstration of sci-RNA-seq, we profile the transcriptomes of 42,035 single cells from C. elegans at the L2 stage, effectively 50-fold "shotgun cellular coverage" of the somatic cell composition of this organism at this stage.
-  We identify 27 distinct cell types, including rare cell types such as the two distal tip cells of the developing gonad, estimate consensus expression profiles and define cell-type specific and selective genes.
-  Given that C. elegans is the only organism with a fully mapped cellular lineage, these data represent a rich resource for future methods aimed at defining cell types and states.
-  They will advance our understanding of developmental biology, and constitute a major leap towards a comprehensive, single-cell molecular atlas of a whole animal.</p>
-
 <h2>Introduction</h2>
 
-<p>This notebook will show you how to work with the C. elegans L2-stage sci-RNA-seq data from Cao et al., 2017.
-It aims to cover the following use cases:</p>
+<p>This notebook will show you how to work with the C. elegans L2-stage sci-RNA-seq data from Cao et al., 2017.<br>It aims to cover the following use cases:</p>
 
 <ol>
   <li> Accessing the raw data
@@ -48,6 +34,19 @@ It aims to cover the following use cases:</p>
   <li> Finding differentially expressed genes between subsets of cells
   <li> Re-clustering subsets of the data using t-SNE
 </ol>
+
+<br>
+
+<p>Key advantages of sci-RNA-seq over contemporary alternatives (such as droplet-based single cell RNA-seq):</p>
+
+<ul>
+  <li>Sublinear cost scaling
+  <li>Reliance on widely available reagents and equipment
+  <li>Ability to concurrently process many samples within a single workflow
+  <li>Compatibility with methanol fixation of cells,
+  <li>Cell capture based on DNA content rather than cell size
+  <li>Flexibility to profile either cells or nuclei
+</ul>
 
 <h2>Installation</h2>
 
