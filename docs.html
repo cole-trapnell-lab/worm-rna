@@ -26,7 +26,7 @@ tags: [worm, manual, vignette, atlas]
 
 <h2>Introduction</h2>
 
-<p>This notebook will show you how to work with the C. elegans L2-stage sci-RNA-seq data from <a href= "Cao_link">Cao et al., 2017</a>.<br>It aims to cover the following use cases:</p>
+<p>This notebook will show you how to work with the C. elegans L2-stage sci-RNA-seq data from <a href= "http://science.sciencemag.org/content/357/6352/661.full">Cao et al., 2017</a>.<br>It aims to cover the following use cases:</p>
 
 <ol>
   <li> Accessing the raw data
@@ -104,9 +104,9 @@ download.file(
 
 <h3>Important Information</h3>
   <ul>
-    <li> cds is a Monocle CellDataSet object containing the single cell RNA-seq data from the main L2-stage C. elegans experiment described in <a href = "Cao_link">Cao et al.</a>, along with annotations.
+    <li> cds is a Monocle CellDataSet object containing the single cell RNA-seq data from the main L2-stage C. elegans experiment described in <a href = "http://science.sciencemag.org/content/357/6352/661.full">Cao et al.</a>, along with annotations.
     <li> cds.neurons is a re-clustered subset of the neuronal cells from cds.
-    <li> cds.experiment.2 has data from the second C. elegans experiment described in <a href = "Cao_link">Cao et al.</a>.
+    <li> cds.experiment.2 has data from the second C. elegans experiment described in <a href = "http://science.sciencemag.org/content/357/6352/661.full">Cao et al.</a>.
       This includes intestine cells that were missed in the first experiment, but the data overall is lower quality than the first experiment.
       In the manuscript, we only included the intestine cells from this experiment and excluded the rest. </li>
     </ul>
@@ -373,7 +373,7 @@ pData(cds)[1:3,]
 
 <br>
 
-<p>neuron.type in pData(cds.neurons) is the annotation used in Figure 4 of <a href = "Cao_link">Cao et al.</a></p>
+<p>neuron.type in pData(cds.neurons) is the annotation used in Figure 4 of <a href = "http://science.sciencemag.org/content/357/6352/661.full">Cao et al.</a></p>
 
 <br>
 
@@ -2106,7 +2106,7 @@ neuron.cluster.16.vs.other.CSN.DEG$higher.expr = ifelse(
 
 <br>
 
-<p>In the <a href = "Cao_link">Cao et al. paper</a>, we found that several of the neuron t-SNE clusters expressed markers of cholinergic neurons such as unc-17, cho-1, and cha-1.
+<p>In the <a href = "http://science.sciencemag.org/content/357/6352/661.full">Cao et al. paper</a>, we found that several of the neuron t-SNE clusters expressed markers of cholinergic neurons such as unc-17, cho-1, and cha-1.
 Let's perform a sub-clustering of these cholinergic neurons to see if we can get better separation.
 First, we'll identify which clusters are enriched for cells that express cholinergic markers.</p>
 
