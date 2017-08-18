@@ -66,6 +66,9 @@ Monocle is a comprehensive package for single cell analysis developed by the Tra
   R CMD INSTALL monocle_2.3.5.tar
 {% endhighlight %}
 
+<p> Later versions of Monocle may produce different results for use case 4 (re-clustering with t-SNE) due to changes in how we preprocess the data before running t-SNE.
+    We will update this vignette when we release the next version of Monocle, 2.6.0, to support the new version. If you wish to learn more about monocle click the following link to go to the <a href = "http://cole-trapnell-lab.github.io/monocle-release/">Monocle Website </a>.</p>
+
 Now, go back to your R session and verify that Monocle 2.3.5 installed successfully (look for monocle_2.3.5 in the output of sessionInfo).
 
 {% highlight R %}
@@ -92,28 +95,8 @@ download.file(
 
 {% highlight R %}
   load("Cao_et_al_2017_vignette.RData")
+  ls()
 {% endhighlight %}
-
-
-<h3> Use of Monocle </h3>
-
-<p> You'll need the R packages listed below. </p>
-
-<p> This vignette was written using Monocle version 2.3.5, which is the version that was used for the paper.
-  The majority of the analyses covered on this page were done so using Monocle.
-  The source code of Monocle 2.3.5 is provided as a supplementary data file for the paper.
-  You can install it using the command: </p>
-
-  <br>
-
-  {% highlight R %}
-    R CMD INSTALL monocle_2.3.5.tar.gz
-  {% endhighlight %}
-
-<br>
-
-  <p> Later versions of Monocle may produce different results for use case 4 (re-clustering with t-SNE) due to changes in how we preprocess the data before running t-SNE.
-    We will update this vignette when we release the next version of Monocle, 2.6.0, to support the new version. If you wish to learn more about monocle click the following link to go to the <a href = "http://cole-trapnell-lab.github.io/monocle-release/">Monocle Website </a>.</p>
 
 <h3>Important Information</h3>
   <ul>
