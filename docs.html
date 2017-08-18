@@ -54,8 +54,19 @@ tags: [worm, manual, vignette, atlas]
 <ul>
   <li> dplyr
   <li> ggplot2
-  <li> monocle
+  <li> Monocle version 2.3.5
 </ul>
+
+<br>
+
+Monocle is a comprehensive package for single cell analysis developed by the Trapnell lab. Monocle version 2.3.5 is the version that was used for the paper. To install Monocle 2.3.5, open a command line and run:
+
+{% highlight R %}
+  curl -O http://waterston.gs.washington.edu/sci_RNA_seq_gene_count_data/monocle_2.3.5.tar.gz
+  R CMD INSTALL monocle_2.3.5.tar
+{% endhighlight %}
+
+Now, go back to your R session and verify that Monocle 2.3.5 installed successfully (look for monocle_2.3.5 in the output of sessionInfo).
 
 {% highlight R %}
   suppressPackageStartupMessages({
@@ -63,17 +74,19 @@ tags: [worm, manual, vignette, atlas]
     library(dplyr)
     library(ggplot2)
   })
+
+  sessionInfo()
 {% endhighlight %}
 
 <br>
 
-<p> This RData file contains both the data and some utility functions to help navigate it. </p>
+<p> Next, we'll download an RData file that has the Cao et al. data and some utility functions to help navigate it. </p>
 
 <br>
 
 {% highlight R %}
 download.file(
-  "http://jpacker-data.s3.amazonaws.com/public/Cao_et_al_2017_vignette.RData",
+  "http://waterston.gs.washington.edu/sci_RNA_seq_gene_count_data/Cao_et_al_2017_vignette.RData",
   destfile = "Cao_et_al_2017_vignette.RData")
 {% endhighlight %}
 
