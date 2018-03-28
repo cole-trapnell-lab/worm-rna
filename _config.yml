@@ -17,8 +17,8 @@ title: Cell Atlas of Worm
 email: coletrap@uw.edu
 description: > # this means to ignore newlines until "baseurl:"
   Cell Atlas of Worm -  The C. elegans trancriptome at single cell resolution
-baseurl: "/single-cell-worm"
-url: "https://github.com/cole-trapnell-lab/single-cell-worm" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/worm-rna"
+url: "https://atlas.gs.washington.edu/worm-rna" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: coletrapnell
 #github_username:  ctrapnell
 
